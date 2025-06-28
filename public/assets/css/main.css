@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*,*::after,*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --logo:'Anton'; 
+    --titulos: 'Bebas Neue';
+    --texto: 'Montserrat'; 
+    --fondoBody: #fff; 
+    --colorTitulos: #010100;
+    --colorTitulos2: #fff; 
+    --colorTexto: #010100;
+    --colortexto2: #fff;
+    --fondoHeroSection: #EFF4FE; 
+    --fondoBotones: #2462eb; 
+    --fondoFooter: #111827; 
+    --verde: #4ef6a6; 
+}
+
+body{
+    background-color: var(--fondoBody);
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+h1{
+    font-family: var(--titulos);
+}
+
+a,p,li,h2,h3,label,span, input::placeholder{
+    font-family: var(--texto);
+}
+
+.column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+----------------------------
+---------- NAVBAR ----------
+----------------------------
+*/
+
+
+
+nav a.navbar-brand{
+    font-family: var(--logo);
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+nav a{
+    font-family: var(--texto);
+}
+
+
+/*
+----------------------------
+---------- FOOTER ----------
+----------------------------
+*/
+
+footer{
+    padding: 15px 10px;
+    background: rgb(36,98,235);
+    background: linear-gradient(90deg, rgba(36,98,235,1) 0%, rgba(42,36,235,1) 100%);
+}
+
+.links{
+    gap: 10px;
+}
+
+.links section h1{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+footer {
+    h1,p,a,li{
+        color: var(--colortexto2);
+        padding: 5px 0;
+    }
+}
+
+footer p,a,li{
+    opacity: .9;
+}
+
+footer ul{
+    margin: 0;
+    padding: 0;    
+}
+
+hr{
+    height: 3px;
+    background-color: var(--colortexto2);
+}
+
+.derechos-RRSS {
+    
+    .derechos{
+        text-align: center;
+    }
+
+    .RRSS{
+        display: none;
+    }
+    
+}
+
+@media screen and (width >=1000px){
+    
+    footer .links{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .derechos-RRSS{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .RRSS{
+            display: flex;
+            gap: 10px;
+
+            i{
+                font-size: 1.3rem;
+            }
+        }
+    }
+}

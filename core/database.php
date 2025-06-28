@@ -1,13 +1,18 @@
 <?php
+namespace Core;
+
+use PDO; 
+use PDOException; 
 class Database {
     private static $instance = null;
     private $pdo;
 
     private function __construct() {
-        $host = 'localhost';
-        $dbName = 'reservas_deportivas';
-        $user = 'root';
-        $password = 'programador3775';
+        
+        $host = $_ENV['DB_HOST'] ?? 'localhost';
+        $dbName = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASSWORD'];
 
         try {
             $this->pdo = new PDO(
@@ -32,3 +37,5 @@ class Database {
         return $this->pdo;
     }
 }
+
+Database::getInstance()->getConnection(); 

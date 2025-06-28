@@ -1,4 +1,6 @@
 <?php 
+
+    namespace Core;
     class Router {
         private $routes = [];
     
@@ -35,22 +37,24 @@
          */
         private function executeAction(string $controllerAction): void {
             list($controllerName, $methodName) = explode('@', $controllerAction);
+
+            $fullClassName = "App\\Controller\\" . $controllerName;
     
-            $controllerFile = __DIR__ . '/../src/controllers/' . $controllerName . '.php';
+            $controllerFile = __DIR__ . '/../app/controller/' . $controllerName . '.php';
     
             if (file_exists($controllerFile)) {
                 require_once $controllerFile;
     
-                if (class_exists($controllerName)) {
-                    $controller = new $controllerName();
+                if (class_exists($fullClassName)) {
+                    $controller = new $fullClassName();
     
                     if (method_exists($controller, $methodName)) {
                         $controller->$methodName();
                     } else {
-                        $this->handleError("El método $methodName no existe en $controllerName.");
+                        $this->handleError("El método $methodName no existe en $fullClassName.");
                     }
                 } else {
-                    $this->handleError("La clase $controllerName no existe.");
+                    $this->handleError("La clase $fullClassName no existe.");
                 }
             } else {
                 $this->handleError("El archivo del controlador $controllerFile no se encuentra.");

@@ -1,13 +1,15 @@
-<?php 
+<?php
 
-    require_once 'database.php'; 
+    namespace Core; 
+    use Core\Database;
+    use PDO; 
     class EmptyModel{
         protected $db;
         protected $table;
         protected $primaryKey;
     
         public function __construct($table, $primaryKey = 'id') {
-            $this->db = Database::getInstance()->getConnection();
+            $this->db = Database::getInstance()->getConnection(); 
             $this->table = $table;
             $this->primaryKey = $primaryKey;
         }

@@ -1,0 +1,20 @@
+{
+    "name": "arman/campo-libre",
+    "autoload": {
+        "psr-4": {
+            "Arman\\CampoLibre\\": "src/",
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Armando",
+            "email": "452@cifpceuta.es"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.10",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
