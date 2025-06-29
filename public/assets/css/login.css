@@ -1,0 +1,138 @@
+
+body{
+    background-color: var(--fondoHeroSection);
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fffefe;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.titulo-parrafo{
+    text-align: center;
+
+    h2{
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    p{
+        font-size: 0.8rem;
+    }
+}
+
+
+
+.label-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 10px 0;
+    
+    
+    label{
+        font-size: 0.9rem;
+        font-weight: 550;
+    }
+    
+    input{
+        padding: 8px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        font-family: var(--texto);
+        font-size: .75rem;
+
+        &::placeholder{
+            font-size: .75rem;
+        }
+
+        &:focus{
+            outline: 2px solid var(--fondoBotones);
+        }
+    }
+
+    span{
+        margin-top: 2.5px;
+        font-size: 0.7rem;
+        color: red;
+    }
+
+    .noVisible{
+        opacity: 0;
+    }
+
+    .visible{
+        opacity: 1;
+    }
+}
+
+.enviar{
+    width: 100%;
+}
+
+.recordarme{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+
+    label{
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+}
+
+.enviar{
+    margin: 10px 0;
+    padding: 7px 0;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.disabled{
+    background-color: rgb(36, 98, 235, 0.5);
+}
+
+.registrate{
+    margin: 10px 0;
+    font-size: 0.8rem;
+    text-align: center;
+
+    color: var(--colorTexto);
+
+        strong{
+            font-weight: normal;
+            color: var(--fondoBotones);
+        }
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+    a{
+        padding: 7px 12px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        color: var(--colorTexto);
+        font-size: 0.8rem;
+        font-weight: 500;
+
+        i{
+            color: var(--colorTexto);
+            margin-right: 8px;
+        }
+    }
+}

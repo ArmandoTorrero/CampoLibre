@@ -63,7 +63,7 @@
         <h1>¡Comienza a disfrutar del deporte hoy mismo!</h1>
         <p>Reserva tu primera instalación deportiva en minutos y descubre lo fácil que es con SportReserve</p>
         <article class="buttons">
-            <a href="" target="_self">Iniciar sesión</a>
+            <a href="/CampoLibre/public/login" target="_self">Iniciar sesión</a>
             <a href="" target="_self">Campos disponibles</a>
         </article>
     </section>

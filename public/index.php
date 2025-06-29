@@ -17,14 +17,18 @@
     // instanciamos la clase router
     $router = new Router();
     
-    // creamos las rutas
+    // RUTAS PARA VISTAS
     $router->add('/', 'UserController@landingPage'); 
+    $router->add('/login', 'UserController@loginPage'); 
+    $router->add('/registro', 'UserController@registerPage'); 
 
 
-    // rutas que mandan json encode
+    // RUTAS QUE MANDAN JSON ENCODE
 
     // USUARIO
     $router->add('/usuarios', 'UserController@getAllUsers');
+    $router->add('/validarLogin', 'UserController@validarLogin');
+    $router->add('/validarRegistro', 'UserController@validarRegistro');
 
     // CAMPO
     $router->add('/getCampos', 'CampoController@getCampos');    

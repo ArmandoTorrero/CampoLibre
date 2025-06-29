@@ -24,6 +24,34 @@
         {
             echo json_encode(['usuarios' => $this->userModel->getAll()]);
         }
+
+        public function loginPage()
+        {
+            require __DIR__ . '/../view/user/login.php'; 
+        }
+
+        public function registerPage()
+        {
+            require __DIR__ . '/../view/user/registro.php'; 
+        }
+
+        public function validarLogin() {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                echo json_encode(['exito'=>true,'mensaje' => "exito"]); 
+            }else{
+                echo json_encode(['exito'=>false,'mensaje' => "no exito"]); 
+            }
+        }
+
+        public function validarRegistro() {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                echo json_encode(['exito'=>true,'mensaje' => "exito"]); 
+            }else{
+                echo json_encode(['exito'=>false,'mensaje' => "no exito"]); 
+            }
+        }
     }
 
 ?>

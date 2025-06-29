@@ -17,7 +17,7 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
 
     // Añadimos el precio y el boton junto con el enlace
     let precio_span = crearElemento('span', 'precio');   
-    precio_span.textContent = `${precio}€`;
+    precio_span.textContent = `Desde ${precio}€/hora`;
 
     let button = crearElemento('button', 'ver-detalles');
     let enlace = crearElemento('a', 'enlace');
