@@ -80,8 +80,91 @@
     }
 }
 
+.campos-populares{
+    gap: 10px;
+}
+
+.campos{
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+}
+
+.pista{
+    width: 85%;
+    max-width: 450px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pista  .img{
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+    background-image: url(./../img/img_futbol_sala.png);
+
+}
+.pista .content{
+    padding: 10px;
+    
+}
+
+.pista .nombre_campo{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.pista .content > .precio-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span.precio{
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--fondoBotones);
+    }
+
+    button.ver-detalles{
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background-color: var(--fondoBody);
+
+        a{
+            font-size: 0.8rem;
+            font-weight: 550;
+            color: var(--colortexto);
+        }
+    }
+    
+}
+
+.pista .categoria{
+    width: min-content;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+    font-size: 0.9rem;
+    font-weight: bold;
+    position: absolute;
+    top: 4%;
+    right: 4%;
+
+}
+
+.ver_campos{
+    margin: 15px 0;
+    padding: 5px 20px;
+        border-radius: 5px;
+        background-color: var(--fondoBotones);
+        color: var(--colortexto2);
+        font-weight: 500;
+}
+
 .pree-footer{
-    padding: 10px 0;
+    padding: 25px 5px;
 }
 
 .pree-footer > h1, .pree-footer > p{
@@ -94,7 +177,7 @@
 
     a{
         padding: 5px 20px;
-        border-radius: 10px;
+        border-radius: 5px;
         background-color: var(--fondoBotones);
         color: var(--colortexto2);
         font-weight: 500;
@@ -108,5 +191,10 @@
     
     .cards-container{
         flex-direction: row;
+    }
+
+    .campos{
+        flex-direction: row;
+        justify-content: center;
     }
 }

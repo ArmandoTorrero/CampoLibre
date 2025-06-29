@@ -50,6 +50,12 @@ a,p,li,h2,h3,label,span, input::placeholder{
     align-items: center;
 }
 
+.bg-img{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*
 ----------------------------
 ---------- NAVBAR ----------
@@ -129,6 +135,10 @@ hr{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+    }
+
+    footer .section-1 p{
+        width: 70%;
     }
 
     .derechos-RRSS{

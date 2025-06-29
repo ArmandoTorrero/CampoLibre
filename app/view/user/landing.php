@@ -55,7 +55,8 @@
             <p>Descubre los campos más reservados por nuestra comunidad</p>
         </article>
 
-        <article class="campos"></article>
+        <article class="campos column-center"></article>
+        <a class="ver_campos" href="" target="_self">Ver todos los campos</a>
     </section>
 
     <section class="pree-footer column-center">
@@ -66,6 +67,8 @@
             <a href="" target="_self">Campos disponibles</a>
         </article>
     </section>
+
+    <script type="module" src="./assets/js/views/landing.js"></script>
 <?php 
     $content = ob_get_clean(); 
     require __DIR__ . '/../layouts/main.php';

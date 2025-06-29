@@ -21,7 +21,16 @@
     $router->add('/', 'UserController@landingPage'); 
 
 
-    
+    // rutas que mandan json encode
+
+    // USUARIO
+    $router->add('/usuarios', 'UserController@getAllUsers');
+
+    // CAMPO
+    $router->add('/getCampos', 'CampoController@getCampos');    
+
+
+
     $requestUri = isset($_GET['url']) ? '/' . trim($_GET['url'], '/') : '/';
     $router->dispatch($requestUri); 
 

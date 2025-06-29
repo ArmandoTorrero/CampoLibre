@@ -91,6 +91,7 @@
 
         </footer>
     </body>
+    <script type="module" src="./assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/bee72e8c16.js" crossorigin="anonymous"></script>
 

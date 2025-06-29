@@ -10,13 +10,19 @@
             $this->userModel = new User();
         }
 
-        public function hola() {
-            var_dump($this->userModel->getAll());  
-        }
-
         public function landingPage()
         {    
             require __DIR__ . '/../view/user/landing.php'; 
+        }
+
+
+        /**
+         * Enviar la información de todos los usuarios al JS
+         * @return void
+         */
+        public function getAllUsers()
+        {
+            echo json_encode(['usuarios' => $this->userModel->getAll()]);
         }
     }
 
