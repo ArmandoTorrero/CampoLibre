@@ -46,7 +46,7 @@ a,p,li,h2,h3,label,span, input::placeholder{
 
 .column-center{
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     align-items: center;
 }
 

@@ -17,3 +17,23 @@ export async function getCampos() {
         
     }
 }
+
+export async function getCampo(campo,categoria) {
+    try {
+        const response = await fetch(`${BASE_URL}/getCampo`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                nombre_campo: campo,
+                id_categoria: categoria
+            })
+        });
+
+        return await response.json();
+
+    } catch (error) {
+        console.error(error);
+    }
+}

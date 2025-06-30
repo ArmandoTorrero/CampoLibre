@@ -22,6 +22,9 @@
     $router->add('/login', 'UserController@loginPage'); 
     $router->add('/registro', 'UserController@registerPage'); 
 
+    $router->add('/campos', 'CampoController@CamposPage'); 
+
+
 
     // RUTAS QUE MANDAN JSON ENCODE
 
@@ -32,7 +35,10 @@
 
     // CAMPO
     $router->add('/getCampos', 'CampoController@getCampos');    
+    $router->add('/getCampo', 'CampoController@getCampo'); 
 
+    // MODALIDAD
+    $router->add('/getModalidades', 'ModalidadController@getModalidades');
 
 
     $requestUri = isset($_GET['url']) ? '/' . trim($_GET['url'], '/') : '/';

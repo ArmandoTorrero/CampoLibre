@@ -19,5 +19,19 @@
             echo json_encode($campos); 
         }
 
+        public function camposPage() {
+            require __DIR__ . '/../view/campos/campos.php'; 
+        }
+
+        public function getCampo() {
+            $datos = json_decode(file_get_contents("php://input"), true);
+
+            if ($datos) {
+                echo json_encode(['campos'=> $this->campoModel->getCampo($datos['nombre_campo'], $datos['id_categoria'])]);   
+            }else {
+                echo json_encode(['error' => 'Error al recibir los datos']); 
+            }
+        }
+
     }
 ?>

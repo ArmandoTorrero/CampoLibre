@@ -13,7 +13,7 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">SportReserve</a>
+                <a class="navbar-brand" href="/CampoLibre/public/">SportReserve</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -21,7 +21,7 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Campos</a>
+                            <a class="nav-link active" aria-current="page" href="/CampoLibre/public/campos">Campos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Preguntas frecuentes</a>
@@ -31,8 +31,8 @@
                                 Acciones
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Iniciar sesión</a></li>
-                                <li><a class="dropdown-item" href="#">Registrate</a></li>
+                                <li><a class="dropdown-item" href="/CampoLibre/public/login">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" href="/CampoLibre/public/registro">Registrate</a></li>
                                 
                             </ul>
                         </li>

@@ -6,10 +6,12 @@
     </head>
 
     <section class="container">
+        
         <article class="titulo-parrafo column-center">
             <h2>Crear cuenta</h2>
             <p>Regístrate para empezar a reservar campos deportivos.</p>
         </article>
+
         <form action="#" method="post">
 
             <article class="label-input">

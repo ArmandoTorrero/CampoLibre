@@ -1,0 +1,144 @@
+
+
+body{
+    background-color: #f9fafb;
+}
+
+
+.main{
+    width: 95%;
+    margin: 0 auto;
+    padding: 15px 10px;
+}
+
+.campos{
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 25px 0;
+    gap: 20px;
+}
+
+.pista{
+    width: 100%;
+    min-width: 350px;
+    max-width: 450px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pista  .img{
+    height: 225px;
+    border-radius: 10px 10px 0px 0px;
+    background-image: url(./../img/img_futbol_sala.png);
+
+}
+.pista .content{
+    padding: 10px;
+    
+}
+
+.pista .nombre_campo{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.pista .content > .precio-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span.precio{
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--fondoBotones);
+    }
+
+    button.ver-detalles{
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--fondoBotones);
+
+        a{
+            font-size: 0.8rem;
+            font-weight: 550;
+            color: var(--colortexto2);
+        }
+    }
+    
+}
+
+.pista .categoria{
+    width: min-content;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+    font-size: 0.9rem;
+    font-weight: bold;
+    position: absolute;
+    top: 4%;
+    right: 4%;
+
+}
+
+.filtros{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 15px;
+
+    input, select{
+        padding: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+
+        &:focus{
+            outline: 2px solid var(--fondoBotones);
+        }
+    }
+
+    input{
+        width: 100%;
+    }
+
+    select{
+        width: 100%;
+    }
+}
+
+
+@media screen and (width >=768px){
+    
+    .main{
+        width: 90%;
+    }
+
+    .campos{
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pista{
+        width: 30%;
+        flex-grow: 1;
+    }
+
+    .filtros{
+        flex-direction: row;
+
+        input{
+            flex-grow: 2;
+            width: 700px;
+        }
+
+        select{
+            flex-grow: 1;
+            width: 200px;
+        }
+
+    }
+
+    
+}
