@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.querySelector('select#categoria');
     
     getCampos().then(campos => {
+        
         initCampos(campos); 
     })
 

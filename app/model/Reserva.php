@@ -2,6 +2,8 @@
     namespace App\Model;
 
     use Core\EmptyModel;
+    use PDO;
+    use PDOException; 
 
     class Reserva extends EmptyModel {
 

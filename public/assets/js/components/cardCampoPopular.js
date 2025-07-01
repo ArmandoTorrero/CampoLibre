@@ -1,5 +1,16 @@
+import { BASE_URL } from "./../config/config.js";
+import { logueado } from "./../services/user.js";
 import { crearElemento } from "./crearElemento.js";
 
+/**
+ * Componente que crea una carta de un campo 
+ * @param {*} id_campo 
+ * @param {*} nombre 
+ * @param {*} precio 
+ * @param {*} categoria_id 
+ * @param {*} disponible 
+ * @returns 
+ */
 export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponible){
 
     let card_pista = crearElemento('article', 'pista'); 
@@ -21,8 +32,23 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
 
     let button = crearElemento('button', 'ver-detalles');
     let enlace = crearElemento('a', 'enlace');
-    enlace.textContent = "Ver detalles";
+
+    /*
+    ! Cambiar el href del enalce segun el tipo de usuario
+    */ 
+    enlace.textContent = "Reservar";
+    enlace.href = `${BASE_URL}/reservarCampo?id_campo=${id_campo}`;
+
     enlace.target = "_self";
+
+    logueado().then(info => {
+        
+        // if (!info.rol) {
+        //     enlace.href = `${BASE_URL}/login`; 
+        //     enlace.textContent = "Iniciar sesión"
+        // }
+         
+    })
 
     categoria.textContent = categoria_id == 1 ? "Futsal" : categoria_id == 2 ? "Tenis" : "Padel"; 
 

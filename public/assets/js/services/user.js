@@ -13,3 +13,19 @@ export async function getUsuarios() {
         console.error(error);
     }
 }
+
+/**
+ *
+ * Obtener el rol del usuario
+ * @return {*} 
+ */
+export async function logueado () {
+    try {
+        const response = await fetch(`${BASE_URL}/logueado`); 
+        return await response.json(); 
+        
+    } catch (error) {
+        console.error(error);
+        
+    }
+}

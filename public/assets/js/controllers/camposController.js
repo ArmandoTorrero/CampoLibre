@@ -1,7 +1,7 @@
 import { crearOption } from "./../components/createOption";
 import { getModalidades } from "./../services/modalidad";
 import { cardCampoDestacado } from "./../components/cardCampoPopular";
-import { getCampo } from "./../services/campo";
+import { getCampoByFiltro } from "./../services/campo";
 
 
 /**
@@ -45,7 +45,7 @@ export function initFiltros() {
 
         camposContainer.innerHTML = ""; // Limpiar los campos antes de mostrar los resultados
                 
-        getCampo(ev.target.value, select.value).then(data => {
+        getCampoByFiltro(ev.target.value, select.value).then(data => {
 
             data.campos.map(campo => {
                 camposContainer.appendChild(
@@ -61,7 +61,7 @@ export function initFiltros() {
 
         camposContainer.innerHTML = ""; // Limpiar los campos antes de mostrar los resultados
 
-        getCampo(buscador.value, ev.target.value).then(data => {
+        getCampoByFiltro(buscador.value, ev.target.value).then(data => {
             
             data.campos.map(campo => {
                 camposContainer.appendChild(

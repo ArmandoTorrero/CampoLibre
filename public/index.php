@@ -23,6 +23,7 @@
     $router->add('/registro', 'UserController@registerPage'); 
 
     $router->add('/campos', 'CampoController@CamposPage'); 
+    $router->add('/reservarCampo', 'CampoController@reservarCampo'); 
 
 
 
@@ -30,12 +31,14 @@
 
     // USUARIO
     $router->add('/usuarios', 'UserController@getAllUsers');
+    $router->add('/logueado', 'UserController@estaLogueado');
     $router->add('/validarLogin', 'UserController@validarLogin');
     $router->add('/validarRegistro', 'UserController@validarRegistro');
 
     // CAMPO
     $router->add('/getCampos', 'CampoController@getCampos');    
-    $router->add('/getCampo', 'CampoController@getCampo'); 
+    $router->add('/getCampoByfiltro', 'CampoController@getCampoByfiltro'); 
+    $router->add('/getCampoById', 'CampoController@getCampoById'); 
 
     // MODALIDAD
     $router->add('/getModalidades', 'ModalidadController@getModalidades');

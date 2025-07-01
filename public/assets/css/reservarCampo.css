@@ -1,0 +1,115 @@
+
+body{
+    background-color: #f9fafb;
+}
+
+.imgs-fechas{
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.imgs{
+    width: 100%;
+    height: 300px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-image: url('./../img/img_futbol_sala.png');
+}
+
+.info-fechas{
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+}
+
+.titulo-precio{
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    p.precio{
+        color: var(--fondoBotones);
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
+
+.categoria > p{
+    width: min-content;
+    padding: 2.5px 10px;
+    border-radius: 10px;
+    background-color: #daeaff;
+    color: var(--fondoBotones);
+    font-weight: 550;
+}
+
+article.fecha{
+
+    padding: 10px 0;
+
+    h1{
+        font-size: 1.2rem;
+    }
+
+    input{
+        padding: 0px 5px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+
+        &::placeholder{
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        &:focus{
+            border: none;
+            outline: 2px solid var(--fondoBotones);
+        }
+    }
+}
+
+.horarios{
+    border: 1px solid red;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px;
+
+    button{
+        flex-grow: 1;
+        width: 40%;
+        padding: 5px 0;
+        border: none;
+        border-radius: 5px;
+
+    }
+}
+
+.reservar{
+
+    width: 100%;
+
+    button{
+        width: 100%;
+        padding: 5px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--fondoBotones);
+        color: var(--colortexto2);
+        font-weight: 500;
+    }
+}
+
+.selected{
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+}
+
+.disabled{
+    opacity: .5;
+}

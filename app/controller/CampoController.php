@@ -1,6 +1,8 @@
 <?php 
     namespace App\Controller;
     use App\Model\Campo;
+use Core\Utilities\Security;
+use Core\utilities\Sessions;
 
     class CampoController {
 
@@ -23,7 +25,7 @@
             require __DIR__ . '/../view/campos/campos.php'; 
         }
 
-        public function getCampo() {
+        public function getCampoByfiltro() {
             $datos = json_decode(file_get_contents("php://input"), true);
 
             if ($datos) {
@@ -32,6 +34,26 @@
                 echo json_encode(['error' => 'Error al recibir los datos']); 
             }
         }
+
+        public function reservarCampo() {
+
+            $campo = $this->campoModel->getById($_GET["id_campo"]); 
+
+            // comprobamos que el campo existe y esta disponoble, en caso contrario redirgimos al usuario
+
+            $campo && $campo['disponible'] == 1 ? 
+            Sessions::crearSesionIdCampo($_GET["id_campo"]) :
+            Security::redirigir('/CampoLibre/public/campos');
+
+
+            require __DIR__ . '/../view/campos/reservarCampo.php'; 
+        }
+
+        public function getCampoById() {
+            echo json_encode(['info_campo' => $this->campoModel->getById($_SESSION["id_campo"])]); 
+        }
+
+        
 
     }
 ?>

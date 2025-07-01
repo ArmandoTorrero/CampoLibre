@@ -18,15 +18,37 @@ export async function getCampos() {
     }
 }
 
-export async function getCampo(campo,categoria) {
+
+/**
+ * Obtener un campo del backend a partir de su id en la session
+ */
+export async function getCampoById() {
     try {
-        const response = await fetch(`${BASE_URL}/getCampo`, {
+        const response = await fetch(`${BASE_URL}/getCampoById`)
+        return await response.json(); 
+        
+    } catch (error) {
+        console.error(error);
+        
+    }
+}
+
+
+/**
+ * Obtener uno o varios campos segun su nombre y la categeria
+ * @param {*} campo 
+ * @param {*} categoria 
+ * @returns 
+ */
+export async function getCampoByFiltro(nombreCampo,categoria) {
+    try {
+        const response = await fetch(`${BASE_URL}/getCampoByfiltro`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                nombre_campo: campo,
+                nombre_campo: nombreCampo,
                 id_categoria: categoria
             })
         });

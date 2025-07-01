@@ -2,6 +2,7 @@
     namespace App\Controller;
 
     use App\Model\User;
+    use Core\Utilities\Security;
 
     class UserController{
         private $userModel; 
@@ -50,6 +51,21 @@
                 echo json_encode(['exito'=>true,'mensaje' => "exito"]); 
             }else{
                 echo json_encode(['exito'=>false,'mensaje' => "no exito"]); 
+            }
+        }
+
+        /**
+         * 
+         * Comprobar si un usuario esta logueado
+         * @return void
+         */
+        public function estaLogueado()
+        {
+            if (Security::estaLogueado()) {
+                $rol = ['rol' => $this->userModel->getUserRol($_SESSION["id_usuario"])['rol_id']];
+                echo json_encode($rol);
+            } else {
+                echo json_encode(['rol' => false]);
             }
         }
     }
