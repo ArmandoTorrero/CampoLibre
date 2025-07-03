@@ -35,7 +35,7 @@
          * @return void
          */
         public static function redirigir($destino) {
-            header("Location: $destino"); 
+            header("Location: /CampoLibre/public/$destino"); 
         }
 
         /**

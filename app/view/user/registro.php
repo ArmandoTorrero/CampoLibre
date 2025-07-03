@@ -41,18 +41,22 @@
             <article class="label-input">
 
                 <label for="tlf">Telefono</label>
-                <input type="number" name="tlf" id="tlf" placeholder="Nº telefono" required>
+                <input type="text" name="tlf" id="tlf" placeholder="Nº telefono" required>
                 <span class="noVisible">El formato no es correcto</span>
                 
             </article>
+
             <button type="submit" class="enviar disabled">Iniciar sesión</button>
+
+            <article class="recordarme">
+                <input type="checkbox" name="terminos-condiciones" id="terminos-condiciones">
+                <label for="terminos-condiciones">Acepto los terminos y condiciones</label>
+            </article>
+
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['register_csrf_token'] ?>">
 
         </form>
 
-        <article class="recordarme">
-            <input type="checkbox" name="recordarme" id="recordarme">
-            <label for="recordarme">Acepto los terminos y condiciones</label>
-        </article>
 
         <a href="/CampoLibre/public/login" target="_self" class="registrate">¿Ya tienes una cuenta? <strong>Inicia sesión</strong></a>
         <article class="buttons">

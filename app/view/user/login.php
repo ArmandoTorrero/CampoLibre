@@ -27,15 +27,18 @@
                 <span class="noVisible">El formato no es correcto</span>
 
             </article>
+            
             <button type="submit" class="enviar disabled">Iniciar sesión</button>
 
+            <article class="recordarme">
+                <input type="checkbox" name="recordar" id="recordar">
+                <label for="recordar">Recuerdame</label>
+                
+            </article>
+
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['login_csrf_token'] ?>">
         </form>
 
-        <article class="recordarme">
-            <input type="checkbox" name="recordarme" id="recordarme">
-            <label for="recordarme">Recordarme</label>
-            
-        </article>
 
         <a href="/CampoLibre/public/registro" target="_self" class="registrate">¿No tienes una cuenta? <strong>Crea una aqui</strong></a>
         <article class="buttons">

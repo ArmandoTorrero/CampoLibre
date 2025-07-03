@@ -1,4 +1,4 @@
-import { BASE_URL } from "../config/config";
+import { BASE_URL } from "./../config/config.js";
 
 export async function sendForm(form, ruta) {
 
@@ -8,12 +8,8 @@ export async function sendForm(form, ruta) {
                 method: "POST",
                 body: formData,
             });
-            const data = await response.json();
-            if (data.exito) {
-                return await data.mensaje;
-            } else {
-                return await data.mensaje;;
-            }
+            return await response.json();
+           
         } catch (error) {
             console.error("Error:", error);
         }

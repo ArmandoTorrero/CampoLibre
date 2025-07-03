@@ -20,7 +20,8 @@
     // RUTAS PARA VISTAS
     $router->add('/', 'UserController@landingPage'); 
     $router->add('/login', 'UserController@loginPage'); 
-    $router->add('/registro', 'UserController@registerPage'); 
+    $router->add('/registro', 'UserController@registerPage');
+    $router->add('/perfil', 'UserController@profilePage'); 
 
     $router->add('/campos', 'CampoController@CamposPage'); 
     $router->add('/reservarCampo', 'CampoController@reservarCampo'); 
@@ -39,6 +40,12 @@
     $router->add('/getCampos', 'CampoController@getCampos');    
     $router->add('/getCampoByfiltro', 'CampoController@getCampoByfiltro'); 
     $router->add('/getCampoById', 'CampoController@getCampoById'); 
+
+    //RESERVAS
+    $router->add('/validarReserva', 'ReservaController@validarReserva'); 
+
+    // FRANJA HORARIA
+    $router->add('/getHorariosByFecha', 'FranjaHorariaController@getHorariosByFecha'); 
 
     // MODALIDAD
     $router->add('/getModalidades', 'ModalidadController@getModalidades');

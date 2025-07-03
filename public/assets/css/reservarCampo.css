@@ -11,12 +11,12 @@ body{
 .imgs{
     width: 100%;
     height: 300px;
-    border: 1px solid blue;
     border-radius: 5px;
     background-image: url('./../img/img_futbol_sala.png');
 }
 
 .info-fechas{
+    margin: 20px 0;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -58,6 +58,7 @@ article.fecha{
         padding: 0px 5px;
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-radius: 5px;
+        color: var(--fondoBotones);
 
         &::placeholder{
             font-size: 0.8rem;
@@ -72,7 +73,6 @@ article.fecha{
 }
 
 .horarios{
-    border: 1px solid red;
 
     display: flex;
     flex-flow: row wrap;
@@ -83,9 +83,10 @@ article.fecha{
     button{
         flex-grow: 1;
         width: 40%;
-        padding: 5px 0;
+        padding: 7px 0;
         border: none;
         border-radius: 5px;
+        font-weight: 400;
 
     }
 }
@@ -93,10 +94,11 @@ article.fecha{
 .reservar{
 
     width: 100%;
+    padding: 10px 0;
 
     button{
         width: 100%;
-        padding: 5px 0;
+        padding: 7.5px 0;
         border: none;
         border-radius: 5px;
         background-color: var(--fondoBotones);
@@ -105,11 +107,152 @@ article.fecha{
     }
 }
 
+.info-reserva > p{
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 .selected{
     background-color: var(--fondoBotones);
     color: var(--colortexto2);
 }
 
 .disabled{
+    opacity: .3;
+}
+
+.button-reservation-disabled{
     opacity: .5;
+}
+
+dialog{
+    width: 95%;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 7px;
+    border: none;
+}
+
+.info-reserva article{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+}
+
+form{
+    
+    .label-input{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        input{
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+
+}
+
+.expiracion-CVC{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label-input{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 47%;
+    }
+}
+
+form .buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 7.5px 0;
+
+    button{
+        width: 47%;
+        border-radius: 5px;
+        font-weight: 500;
+
+        &:first-child{
+            background-color: var(--colortexto2);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        &:last-of-type{
+            border: none;
+            background-color: var(--fondoBotones);
+            color: var(--colortexto2);
+        }
+    }
+} 
+
+.label-input{
+    margin: 5px 0;
+
+    label{
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    input{
+        border: 1px solid rgba(0, 0, 0, 0.3);
+
+        &::placeholder{
+            font-size: .9rem;
+        }
+
+        &:focus{
+            outline: 2px solid var(--fondoBotones);
+        }
+    }
+
+    span{
+        margin-top: 2.5px;
+        font-size: 0.7rem;
+        color: red;
+    }
+
+    .noVisible{
+        opacity: 0;
+    }
+
+    .visible{
+        opacity: 1;
+    }
+}
+
+.label-input > input, .buttons > button{
+    padding: 7.5px 7.5px;
+}
+
+
+
+@media screen and (width >= 768px){
+    
+    
+    .imgs-fechas{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        width: 95%;
+    }
+
+    .imgs{
+        height: 350px;
+    }
+
+    .info-fechas{
+        margin: 0;
+    }
+
+    
 }

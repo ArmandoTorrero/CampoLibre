@@ -1,8 +1,24 @@
-import { initForm, validarForm } from "../controllers/loginController"
+import { validarForm } from "./../components/validarForm";
+import { initForm } from "./../components/initForm";
+import { comprobarCookieRecuerdame, isCheked } from "./../controllers/loginController"
+
 
 document.addEventListener("DOMContentLoaded", () =>{
 
-    validarForm(); 
+
+    const inputs = [...document.querySelectorAll(".label-input input")];  
+    const spans = [...document.querySelectorAll(".label-input span")]; 
+    const buttonSubmit = document.querySelector(".enviar"); 
+
+    validarForm(
+        inputs, 
+        spans, 
+        [
+            /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/, 
+            /^.{5,}$/
+        ], 
+        buttonSubmit
+    )
     
     const form = document.querySelector("form");     
 
@@ -10,5 +26,8 @@ document.addEventListener("DOMContentLoaded", () =>{
         ev.preventDefault(); 
 
         initForm(form, "/validarLogin"); 
+        isCheked(); 
     })
+
+    comprobarCookieRecuerdame(); 
 })
