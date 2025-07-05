@@ -1,3 +1,4 @@
+import { fetchData } from "./../components/fetchData.js";
 import { BASE_URL } from "./../config/config.js";
 
 
@@ -28,4 +29,8 @@ export async function logueado () {
         console.error(error);
         
     }
+}
+
+export function getUserInfo() {
+    return fetchData('/getUserInfo'); 
 }

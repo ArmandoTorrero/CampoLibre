@@ -147,7 +147,7 @@ class Validador
      */
     public static function validarCamposLoginUsuario($correo, $password)
     {
-        return (self::validarEmail($correo) && self::validarPassword($password));
+        return self::validarEmail($correo) && self::validarPassword($password);
     }
 
     /**

@@ -1,0 +1,181 @@
+
+.izquierda-derecha{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+
+.izquierda, .derecha{
+    width: 100%;
+}
+
+.title{
+    width: 100%;
+}
+
+.izquierda{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+.user-icon > i{
+    font-size: 3rem;
+    color: var(--fondoBotones);
+}
+
+.user-info{
+    
+    h1{
+        font-size: 1.5rem;
+    }
+}
+
+.additional-info{
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 7.5px;
+    padding: 0px 5px ;
+}
+
+
+.derecha .sections{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    border-radius: 5px;
+    background-color: var(--fondoBotones);
+
+    button{
+        flex-grow: 1;
+        border: none;
+        background-color: transparent;
+        color: var(--colortexto2);
+        font-size: .9rem;
+    }
+}
+
+
+
+.content{
+    margin: 10px 0px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.info-reserva{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.titulo-fecha{
+    display: flex;
+    flex-flow: column wrap;
+    padding: 5px 0;
+}
+
+
+.nombre_campo{
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.fecha-hora{
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: .8s;
+}
+
+.add_info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px;
+
+    .status{
+        padding: 2.5px 7.5px;
+        border-radius: 20px;
+        background-color: var(--verde);
+        color: #185300;
+        font-size: 0.7rem;
+    }
+
+    .precio-reserva{
+        font-weight: 500;
+    }
+}
+
+.datos_container form .label-input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 10px 0;
+    
+    
+    label{
+        font-size: 0.9rem;
+        font-weight: 550;
+    }
+    
+    input{
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        font-family: var(--texto);
+        font-size: .9rem;
+
+        &:focus{
+            outline: 2px solid var(--fondoBotones);
+        }
+    }
+
+    span{
+        color: red;
+        font-size: .8rem;
+    }
+}
+
+form button{
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+@media screen and (width >= 768px){
+    .izquierda-derecha{
+        width: 90%;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    .izquierda{
+        width: 30%;
+    }
+
+    .derecha{
+        width: 60%;
+    }
+}

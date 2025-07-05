@@ -24,7 +24,7 @@
                             <a class="nav-link active" aria-current="page" href="/CampoLibre/public/campos">Campos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Preguntas frecuentes</a>
+                            <a class="nav-link" href="/CampoLibre/public/PyR">Preguntas frecuentes</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

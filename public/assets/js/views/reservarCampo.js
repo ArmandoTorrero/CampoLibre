@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const spans = [...document.querySelectorAll(".label-input span")]
     const buttonSubmit = document.querySelector("button.confirm-pay"); 
     
-    const form = document.querySelector("dialog form");    
+    const form = document.querySelector("dialog form");  
+    form.method = "POST";   
 
     calendar(calendario); 
     initReserva(calendario); 

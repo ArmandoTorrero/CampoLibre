@@ -22,6 +22,7 @@
     $router->add('/login', 'UserController@loginPage'); 
     $router->add('/registro', 'UserController@registerPage');
     $router->add('/perfil', 'UserController@profilePage'); 
+    $router->add('/PyR', 'UserController@PyR'); 
 
     $router->add('/campos', 'CampoController@CamposPage'); 
     $router->add('/reservarCampo', 'CampoController@reservarCampo'); 
@@ -35,6 +36,8 @@
     $router->add('/logueado', 'UserController@estaLogueado');
     $router->add('/validarLogin', 'UserController@validarLogin');
     $router->add('/validarRegistro', 'UserController@validarRegistro');
+    $router->add('/editUser', 'UserController@editUser');
+    $router->add('/getUserInfo', 'UserController@getUserInfo');
 
     // CAMPO
     $router->add('/getCampos', 'CampoController@getCampos');    
@@ -42,6 +45,7 @@
     $router->add('/getCampoById', 'CampoController@getCampoById'); 
 
     //RESERVAS
+    $router->add('/getAllReservas', 'ReservaController@getAll'); 
     $router->add('/validarReserva', 'ReservaController@validarReserva'); 
 
     // FRANJA HORARIA

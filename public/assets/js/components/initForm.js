@@ -4,6 +4,7 @@ import { sendForm } from "./sendForm";
 export function initForm(form, ruta) {
     
     sendForm(form, ruta).then((result) => {
+        
         Swal.fire({
             title: result.mensaje,
             icon: result.exito ? "success" : "error"

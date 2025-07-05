@@ -23,6 +23,10 @@
             require __DIR__ . '/../view/user/landing.php'; 
         }
 
+        public function PyR() {
+            require __DIR__ . '/../view/user/PyR.php'; 
+        }
+
 
         /**
          * Enviar la información de todos los usuarios al JS
@@ -53,6 +57,11 @@
         }
 
         public function profilePage() {
+
+            $csrfTokenManager = new CsrfTokenManager(); 
+            $token = $csrfTokenManager->getToken('user_edit')->getValue(); 
+            $_SESSION["editUser_csrf_token"] = $token; 
+
             require __DIR__ . '/../view/user/perfil.php'; 
         }
 
@@ -70,6 +79,17 @@
                 RespuestaJSON::error("Token CSRF inválido");
                 return;
             }
+
+            $camposValidos = Validador::validarCamposLoginUsuario(
+                Security::sanitizeString($_POST["email"]),
+                Security::sanitizeString($_POST["passwd"])
+            ); 
+            
+            if (!$camposValidos) {
+                RespuestaJSON::error('Los campos no son validos'); 
+                return; 
+            }
+
             try {
                 v::arrayType()
                     ->key('email', v::email()->notEmpty()->setName('correo'))
@@ -111,6 +131,19 @@
                 RespuestaJSON::error("Token CSRF inválido");
                 return;
             }
+
+            $camposValidos = Validador::validarCamposRegistroUsuario(
+                Security::sanitizeString($_POST["username"]), 
+                Security::sanitizeString($_POST["email"]), 
+                Security::sanitizeString($_POST["passwd"]), 
+                Security::sanitizeString($_POST["tlf"])
+            ); 
+
+            if (!$camposValidos) {
+                RespuestaJSON::error('Los campos no son validos'); 
+                return; 
+            }
+
             try {
                 v::arrayType()
                     ->key('nombre', v::stringType()->length(3,15)->setName('username'))
@@ -121,7 +154,7 @@
 
                 $user = Validador::existelUsuarioRegistro(
                     $this->userModel->getAll(), 
-                    $_POST["email"]
+                    Security::sanitizeString($_POST["email"])
                 ); 
 
                 if (!$user) {
@@ -129,7 +162,7 @@
                     Sessions::crearSesionUsername($_POST["nombre"]);  
                     RespuestaJSON::exito('Usuario creado'); 
                 } else {
-                    RespuestaJSON::error('Este usuario ya existe'); 
+                    RespuestaJSON::error('Este usuario ya existe');  
                 }
 
             } catch (ValidationException $e) {
@@ -138,6 +171,20 @@
                 RespuestaJSON::error("Errores de validación", $errores);
             }
             
+        }
+
+        public function editUser() {
+
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                RespuestaJSON::error("Metodo no permitido"); 
+                return; 
+            }
+
+            RespuestaJSON::exito('Datos recibidos con exito'); 
+        }
+
+        public function getUserInfo() {
+            echo json_encode(['user'=> $this->userModel->getById($_SESSION["id_usuario"])]); 
         }
 
         /**
