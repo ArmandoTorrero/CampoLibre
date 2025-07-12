@@ -12,12 +12,13 @@
             parent::__construct('franja_horaria'); 
         }
 
-        public function getHorariosByFecha($fecha)
+        public function getHorariosByFecha($fecha,$id)
         {
             try {
-                $sql = "SELECT * FROM franja_horaria WHERE fecha = :fecha";
+                $sql = "SELECT * FROM franja_horaria WHERE fecha = :fecha AND pista_id = :id";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindParam(':fecha', $fecha);
+                $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
                 

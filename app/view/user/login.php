@@ -25,12 +25,18 @@
                 <label for="passwd">Contraseña</label>
                 <input type="password" name="passwd" id="passwd" placeholder="Contraseña" required>
                 <span class="noVisible">El formato no es correcto</span>
+                
+                <div class="mostrar-passwd">
+                    <input type="checkbox" name="mostrar" id="mostrar">
+                    <label for="mostrar">Mostrar contraseña</label>
+                </div>
 
             </article>
             
             <button type="submit" class="enviar disabled">Iniciar sesión</button>
 
             <article class="recordarme">
+
                 <input type="checkbox" name="recordar" id="recordar">
                 <label for="recordar">Recuerdame</label>
                 

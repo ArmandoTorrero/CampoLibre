@@ -24,11 +24,6 @@
     border-radius: 5px;
 }
 
-
-
-
-
-
 .user-icon > i{
     font-size: 3rem;
     color: var(--fondoBotones);
@@ -161,6 +156,11 @@ form button{
     color: var(--colortexto2);
     font-size: .9rem;
     font-weight: 500;
+}
+
+.cerrar-sesion > form button{
+    margin: 5px 0;
+    background-color: red;
 }
 
 @media screen and (width >= 768px){

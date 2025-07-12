@@ -130,6 +130,7 @@
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         background-color: var(--fondoBody);
+        transition: all .25s ease-in;
 
         a{
             font-size: 0.8rem;
@@ -184,9 +185,6 @@
     }
 }
 
-
-
-
 @media screen and (min-width: 1000px) {
 
     .hero h1{
@@ -228,6 +226,12 @@
     .card:hover .icon{
     
         transform: scale(1.2);
+    }
+
+    .pista .content > .precio-button{
+        button:hover{
+            background-color: rgba(244, 244, 244, 0.75);
+        }
     }
 
     .campos{

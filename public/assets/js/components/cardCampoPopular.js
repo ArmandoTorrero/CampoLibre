@@ -33,23 +33,30 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
     let button = crearElemento('button', 'ver-detalles');
     let enlace = crearElemento('a', 'enlace');
 
-    /*
-    ! Cambiar el href del enalce segun el tipo de usuario
-    */ 
-    enlace.textContent = "Reservar";
-    enlace.href = `${BASE_URL}/reservarCampo?id_campo=${id_campo}`;
-
     enlace.target = "_self";
 
     logueado().then(info => {
         
-        // if (!info.rol) {
-        //     enlace.href = `${BASE_URL}/login`; 
-        //     enlace.textContent = "Iniciar sesión"
-        // }
-         
-    })
+        if (!info.rol) {
+            enlace.href = `${BASE_URL}/login`; 
+            enlace.textContent = "Iniciar sesión"
+        }
+        
+        if (info.rol === 1) {
+            enlace.textContent = "Reservar";
+            enlace.href = `${BASE_URL}/reservarCampo?id_campo=${id_campo}`;
+        }
 
+        if (disponible !== 1) {
+            card_pista.style.opacity = ".5"
+            
+            enlace.addEventListener("click", (ev) => {
+                ev.preventDefault(); 
+            })
+            enlace.textContent = "No disponible"; 
+        }
+    })    
+    
     categoria.textContent = categoria_id == 1 ? "Futsal" : categoria_id == 2 ? "Tenis" : "Padel"; 
 
     button.appendChild(enlace);

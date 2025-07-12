@@ -1,5 +1,8 @@
-import { getHorarioByFecha } from "../services/franja_horaria.js";
+import { crearInput } from "./../components/input.js";
+import { getHorarioByFecha } from "./../services/franja_horaria.js";
 import { getCampoById } from "./../services/campo.js";
+import { logueado } from "./../services/user.js";
+import { BASE_URL } from "./../config/config.js";
 
 /**
  * Rellenar la información del campo
@@ -41,14 +44,14 @@ export function initReserva(calendario) {
     
 
     calendario.addEventListener("input", (ev) => {
-
+        
         buttons.map(btn => {
             btn.disabled = false; 
-            btn.classList.remove("disabled")
+            btn.classList.remove("btnHorarioDisabled")
         })
 
         getHorarioByFecha(ev.target.value).then((fechas) => {
-            
+                        
             setButtonsDisabled(fechas, buttons);
             const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));             
             selectButton(buttonsNotDisabled); 
@@ -57,8 +60,6 @@ export function initReserva(calendario) {
         });
     });
 
-    
-    
 }
 
 /**
@@ -74,7 +75,7 @@ function setButtonsDisabled(array_horas, array_btns) {
 
     disabledButtons.map(btn => {
         btn.disabled = true; 
-        btn.classList.add("disabled")
+        btn.classList.add("btnHorarioDisabled")
     })
     
 }
@@ -109,11 +110,13 @@ function activarBtnReserva() {
         return;
     }
 
-    if (!button_selected.classList.contains("disabled")){
+    if (!button_selected.classList.contains("btnHorarioDisabled")){
+
         btn_reserva_container.classList.remove("button-reservation-disabled"); 
         btn_reserva_container.querySelector("button").disabled = false; 
         btn_reserva_container.querySelector("button").addEventListener("click", () => {
-            document.querySelector("dialog").showModal(); 
+            redirigirLogin(); 
+            openModal(); 
         })
         cerrarModal(); 
     }else{
@@ -129,14 +132,27 @@ export function rellenarInfoReserva() {
     const calendario = document.getElementById("fecha"); 
     
     getCampoById().then(campo => {
-        detallesReserva.children[0].children[1].textContent = campo.info_campo.nombre
         
+        detallesReserva.children[0].children[1].textContent = campo.info_campo.nombre        
     })
 
     detallesReserva.children[1].children[1].textContent = calendario.value
 }
 
+
+function openModal() {
+    const dialog = document.querySelector("dialog");
+    dialog.showModal();
+    // Mueve el foco al primer input del dialog
+    const primerInput = dialog.querySelector("input, button, [tabindex]:not([tabindex='-1'])");
+    if (primerInput) {
+        primerInput.focus();
+    }
+
+}
+
 function cerrarModal() {
+
     const cancelarBtn = document.querySelector(".cancelar-btn");
     const dialog = document.querySelector("dialog");
     if (cancelarBtn && dialog) {
@@ -144,4 +160,23 @@ function cerrarModal() {
             dialog.close();
         });
     }
+}
+
+export function addDataForm() {
+    
+    const form = document.querySelector("form"); 
+    const button_selected_value = document.querySelector("button.selected").value; 
+    const calendario_value = document.getElementById("fecha").value; 
+
+    const input_hidden_fecha = crearInput('fecha', 'hidden', calendario_value); 
+    const input_hidden_horario = crearInput('horario', 'hidden', `${button_selected_value}:00`); 
+
+    form.append(input_hidden_fecha,input_hidden_horario); 
+
+}
+
+function redirigirLogin() {
+    logueado().then(info => {                
+        info.rol == false ? window.location.href = `${BASE_URL}/login` : ''; 
+    })
 }

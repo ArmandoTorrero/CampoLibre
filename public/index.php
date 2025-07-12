@@ -22,7 +22,9 @@
     $router->add('/login', 'UserController@loginPage'); 
     $router->add('/registro', 'UserController@registerPage');
     $router->add('/perfil', 'UserController@profilePage'); 
-    $router->add('/PyR', 'UserController@PyR'); 
+    $router->add('/PyR', 'UserController@PyR');
+    $router->add('/admin', 'UserController@admin'); 
+ 
 
     $router->add('/campos', 'CampoController@CamposPage'); 
     $router->add('/reservarCampo', 'CampoController@reservarCampo'); 
@@ -38,6 +40,8 @@
     $router->add('/validarRegistro', 'UserController@validarRegistro');
     $router->add('/editUser', 'UserController@editUser');
     $router->add('/getUserInfo', 'UserController@getUserInfo');
+    $router->add('/cerrarSesion', 'UserController@cerrarSesion');
+    
 
     // CAMPO
     $router->add('/getCampos', 'CampoController@getCampos');    

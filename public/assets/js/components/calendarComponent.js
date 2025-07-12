@@ -6,7 +6,7 @@
 export function calendar(calendar) {
     flatpickr(calendar, {
         defaultDate: new Date(), 
-        dateFormat: "y-m-d",
+        dateFormat: "Y-m-d",
         locale: "es", 
         minDate: "today", 
         altInput: true, 

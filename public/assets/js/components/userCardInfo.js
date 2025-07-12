@@ -10,12 +10,10 @@ export function userInfoCard() {
     const titulo = crearElemento("h1", "datos_personales"); 
     titulo.textContent = "Datos personales"; 
     
-
     container.appendChild(titulo)
 
     getUserInfo().then(info => {
         
-         
         let array_labels = ['Nombre', 'Correo electrónico', 'Teléfono'];
         let array_values = [info.user.nombre,info.user.email,info.user.tlf]
         let array_types = ["text", "email", "number"]; 
@@ -40,7 +38,6 @@ export function userInfoCard() {
                 /^\d{9}$/
             ],
             buttonSubmit
-
         )
         
         container.appendChild(form); 

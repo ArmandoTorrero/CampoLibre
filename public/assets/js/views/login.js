@@ -1,13 +1,14 @@
 import { validarForm } from "./../components/validarForm";
 import { initForm } from "./../components/initForm";
-import { comprobarCookieRecuerdame, isCheked } from "./../controllers/loginController"
+import { comprobarCookieRecuerdame, isCheked, mostrarPasswd } from "./../controllers/loginController"
 
 
 document.addEventListener("DOMContentLoaded", () =>{
 
 
-    const inputs = [...document.querySelectorAll(".label-input input")];  
-    const spans = [...document.querySelectorAll(".label-input span")]; 
+    const inputs = [...document.querySelectorAll(".label-input > input")];  
+    
+    const spans = [...document.querySelectorAll(".label-input > span")]; 
     const buttonSubmit = document.querySelector(".enviar"); 
 
     validarForm(
@@ -30,4 +31,5 @@ document.addEventListener("DOMContentLoaded", () =>{
     })
 
     comprobarCookieRecuerdame(); 
+    mostrarPasswd(); 
 })

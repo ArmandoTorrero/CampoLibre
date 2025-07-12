@@ -1,6 +1,7 @@
+import { initForm } from "../components/initForm.js";
 import { reservasContainer } from "./../components/reservasContainer.js";
 import { userInfoCard } from "./../components/userCardInfo.js";
-import { getAll } from "./../services/reserva.js";
+import { getAllReservas } from "./../services/reserva.js";
 import { getUserInfo } from "./../services/user.js";
 
 function clearContent(btn,callBack) {
@@ -28,7 +29,7 @@ export function userInfo() {
         
     })
 
-    getAll().then(result => {
+    getAllReservas().then(result => {
         additional_info_container.children[1].textContent = `${result.reservas.length} reservas completadas`; 
         
         dinamic_content.appendChild(reservasContainer(result.reservas)); 
@@ -45,9 +46,21 @@ export function initPerfil() {
 
     const btn_ajustes = document.querySelector(".ajustes"); 
 
-    clearContent(btn_ajustes, () => userInfoCard()); 
+    clearContent(btn_ajustes, () => userInfoCard());
+    cerrarSesion();  
 
 }
 
+
+export function cerrarSesion() {
+
+    const form = document.querySelector(".cerrar-sesion form");
+
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault()
+        initForm(form,'/cerrarSesion'); 
+    })
+
+}
 
 

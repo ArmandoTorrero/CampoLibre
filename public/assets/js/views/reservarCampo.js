@@ -1,7 +1,9 @@
 import { validarForm } from "./../components/validarForm";
 import { calendar } from "./../components/calendarComponent";
-import { infoCampo, initReserva, rellenarInfoReserva } from "./../controllers/reservarCampoController"
+import { addDataForm, infoCampo, initReserva, rellenarInfoReserva } from "./../controllers/reservarCampoController"
 import { initForm } from "./../components/initForm";
+import { logueado } from "../services/user";
+import { BASE_URL } from "../config/config";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,7 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", async (ev) => {
         ev.preventDefault(); 
+        
+        const dialog = form.closest("dialog");
+        if (dialog) dialog.close();
 
+        addDataForm(); 
         initForm(form, "/validarReserva"); 
     })
 

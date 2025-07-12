@@ -22,7 +22,7 @@
 
             if ($datos && isset($datos['fecha'])) {
                 $fecha = $datos['fecha'];
-                echo json_encode(['horarios' => $this->franjaHorariaModel->getHorariosByFecha($fecha)]);
+                echo json_encode(['horarios' => $this->franjaHorariaModel->getHorariosByFecha($fecha,$_SESSION["id_campo"])]);
             } else {
                 echo json_encode(['error' => 'No se recibió una fecha válida']);
             }

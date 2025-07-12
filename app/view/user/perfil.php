@@ -31,6 +31,12 @@
 
             </article>
 
+            <article class="cerrar-sesion">
+                <form action="#" method="post">
+                    <button>Cerrar sesión</button>
+                </form>
+            </article>
+
         </section>
 
             

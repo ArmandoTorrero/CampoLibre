@@ -13,31 +13,23 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/CampoLibre/public/">SportReserve</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="/CampoLibre/public/">CampoLibre</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/CampoLibre/public/campos">Campos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/CampoLibre/public/PyR">Preguntas frecuentes</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Acciones
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/CampoLibre/public/login">Iniciar sesión</a></li>
-                                <li><a class="dropdown-item" href="/CampoLibre/public/registro">Registrate</a></li>
-                                
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/CampoLibre/public/login">Iniciar sesión</a>
                         </li>
+                        
                     </ul>
-                
                 </div>
             </div>
         </nav>
@@ -55,9 +47,9 @@
                 <section class="section-2">
                     <h1>Enlaces útiles</h1>
                     <ul>
-                        <li><a href="#" target="_self">Inicio</a></li>
-                        <li><a href="#" target="_self">Campos</a></li>
-                        <li><a href="#" target="_self">Preguntas frecuentes</a></li>
+                        <li><a href="/CampoLibre/public/" target="_self">Inicio</a></li>
+                        <li><a href="/CampoLibre/public/campos" target="_self">Campos</a></li>
+                        <li><a href="/CampoLibre/public/login">Iniciar sesión</a></li>
                         <li><a href="#" target="_self">Términos y condiciones</a></li>
                     </ul>
                 </section>

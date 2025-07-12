@@ -18,6 +18,24 @@
             $this->userModel = new User();
         }
 
+        /**
+         * Cerrar sesión
+         * @return void
+         */
+        public function logout()
+        {
+            session_unset(); // Elimina todas las variables de sesión
+            session_destroy(); // Destruye la sesión completamente
+            exit; 
+        }
+
+        public function cerrarSesion()
+        {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') return; 
+
+            RespuestaJSON::exito('Sesión cerrada', null, '/login'); 
+            $this->logout();
+        }
         public function landingPage()
         {    
             require __DIR__ . '/../view/user/landing.php'; 
@@ -27,14 +45,8 @@
             require __DIR__ . '/../view/user/PyR.php'; 
         }
 
-
-        /**
-         * Enviar la información de todos los usuarios al JS
-         * @return void
-         */
-        public function getAllUsers()
-        {
-            echo json_encode(['usuarios' => $this->userModel->getAll()]);
+        public function admin() {
+            require_once __DIR__ . '/../view/admin/dashboard.php';
         }
 
         public function loginPage()
@@ -102,14 +114,21 @@
                     Security::sanitizeString($_POST["passwd"])
                 ); 
 
-                if ($user) {
-                    Sessions::crearSesionLogueado(); 
-                    RespuestaJSON::exito('Credenciales correctas', null, "/perfil"); 
-                    
-                } else {
-                    RespuestaJSON::error('Credenciales incorrectas'); 
+                $mensaje = $user ? 'Credenciales correctas' : 'Credenciales incorrectas'; 
+
+                if (!$user) {
+                    RespuestaJSON::error($mensaje);
+                    return; 
                 }
 
+                if ($_SESSION["rol"] !== 2) {
+                    RespuestaJSON::exito($mensaje, null, "/perfil"); 
+                    return; 
+                }
+
+                RespuestaJSON::exito($mensaje, null, "/admin");
+
+        
             } catch (ValidationException $e) {
                 // Devuelve todos los mensajes de error en un array simple
                 $errores = $e->getMessage();
@@ -160,7 +179,7 @@
                 if (!$user) {
                     Sessions::crearSesionLogueado();
                     Sessions::crearSesionUsername($_POST["nombre"]);  
-                    RespuestaJSON::exito('Usuario creado'); 
+                    RespuestaJSON::exito('Usuario creado', null, '/perfil'); 
                 } else {
                     RespuestaJSON::error('Este usuario ya existe');  
                 }
@@ -180,7 +199,40 @@
                 return; 
             }
 
-            RespuestaJSON::exito('Datos recibidos con exito'); 
+            $camposValidos = Validador::validarNombre($_POST["input_0"]) 
+            && Validador::validarEmail($_POST["input_1"]) 
+            && Validador::validarTelefono($_POST["input_2"]); 
+
+            if (!$camposValidos) {
+                RespuestaJSON::error('Los campos no son validos'); 
+                return; 
+            }
+
+             // comprobar que al cambiar el email el email ya esta asignado a otro usuario
+            $usuarioExistente = $this->userModel->getByEmail($_POST['input_1']);
+
+            if ($usuarioExistente && $usuarioExistente['id'] != $_SESSION["id_usuario"]) {
+                RespuestaJSON::error('El correo electrónico ya está registrado por otro usuario'); 
+                return;
+            }
+
+            try {
+
+                $this->userModel->update(
+                    [
+                        'nombre' => $_POST["input_0"],
+                        'email' => $_POST["input_1"],
+                        'tlf' => $_POST["input_2"]
+                    ], 
+                $_SESSION["id_usuario"]);
+
+                RespuestaJSON::exito('Usuario actualizado'); 
+
+            } catch (ValidationException $e) {
+                // Devuelve todos los mensajes de error en un array simple
+                $errores = $e->getMessage();
+                RespuestaJSON::error("Errores de validación", $errores);
+            }
         }
 
         public function getUserInfo() {
@@ -200,6 +252,15 @@
             } else {
                 echo json_encode(['rol' => false]);
             }
+        }
+
+        /**
+         * Enviar la información de todos los usuarios al JS
+         * @return void
+         */
+        public function getAllUsers()
+        {
+            echo json_encode(['usuarios' => $this->userModel->getAll()]);
         }
     }
 

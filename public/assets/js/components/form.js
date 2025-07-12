@@ -1,7 +1,6 @@
 import { crearLabel } from "./label.js";
 import { crearInput } from "./input.js";
 import { crearBoton } from "./button.js";
-import { BASE_URL } from "../config/config.js";
 import { crearSpan } from "./span.js";
 import { initForm } from "./initForm.js";
 

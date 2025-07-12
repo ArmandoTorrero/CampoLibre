@@ -24,6 +24,10 @@
     --verde: #4ef6a6; 
 }
 
+.half-visibility{
+    opacity: .75;
+}
+
 .noVisible{
     opacity: 0;
 }

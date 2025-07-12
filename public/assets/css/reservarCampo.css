@@ -4,6 +4,8 @@ body{
 }
 
 .imgs-fechas{
+    width: 95%;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 20px 10px;
 }
@@ -128,7 +130,7 @@ article.fecha{
 dialog{
     width: 95%;
     max-width: 400px;
-    margin: 30px auto;
+    margin: 2.5rem auto;
     padding: 15px;
     border-radius: 7px;
     border: none;
@@ -233,6 +235,10 @@ form .buttons{
     padding: 7.5px 7.5px;
 }
 
+.btnHorarioDisabled{
+    opacity: .5;
+}
+
 
 
 @media screen and (width >= 768px){
@@ -243,7 +249,7 @@ form .buttons{
         justify-content: center;
         align-items: flex-start;
         gap: 10px;
-        width: 95%;
+        
     }
 
     .imgs{
