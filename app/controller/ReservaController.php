@@ -16,10 +16,6 @@
             $this->franjaHorariaModel = new Franja_horaria();
         }
 
-        public function getAll() {
-            echo json_encode(['reservas' => $this->reservaModel->getReservasByUserId($_SESSION["id_usuario"])]); 
-        }
-
         public function validarReserva()  {
 
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -54,6 +50,14 @@
 
             RespuestaJSON::exito('Reserva realizada con exito', null, '/perfil'); 
 
+        }
+
+        public function getAllReservasByUser() {
+            echo json_encode(['reservas' => $this->reservaModel->getReservasByUserId($_SESSION["id_usuario"])]); 
+        }
+
+        public function getAll() {
+            echo json_encode(['reservas' => $this->reservaModel->getReservas()]);  
         }
         
     }

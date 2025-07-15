@@ -3,6 +3,7 @@ import { getHorarioByFecha } from "./../services/franja_horaria.js";
 import { getCampoById } from "./../services/campo.js";
 import { logueado } from "./../services/user.js";
 import { BASE_URL } from "./../config/config.js";
+import { buttonSelected } from "../components/buttonSelected.js";
 
 /**
  * Rellenar la información del campo
@@ -31,18 +32,18 @@ export function initReserva(calendario) {
 
     const buttons = [...document.querySelectorAll(".horario")];
 
-
+    // si el calendario ya tiene un valor hacemos la logica 
     if (calendario.value.trim() != "") {
         getHorarioByFecha(calendario.value).then(fechas => {
 
             setButtonsDisabled(fechas, buttons);
             const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled")); 
-            selectButton(buttonsNotDisabled); 
-            activarBtnReserva(); 
+            buttonSelected(buttonsNotDisabled, 'selected');
+            activarReserva(buttonsNotDisabled); 
         });
     }
     
-
+    // cuando el usuario pulse una fecha se activa la lógica
     calendario.addEventListener("input", (ev) => {
         
         buttons.map(btn => {
@@ -54,8 +55,8 @@ export function initReserva(calendario) {
                         
             setButtonsDisabled(fechas, buttons);
             const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));             
-            selectButton(buttonsNotDisabled); 
-            activarBtnReserva(); 
+            buttonSelected(buttonsNotDisabled, 'selected'); 
+            activarReserva(buttonsNotDisabled); 
 
         });
     });
@@ -80,36 +81,39 @@ function setButtonsDisabled(array_horas, array_btns) {
     
 }
 
-function selectButton(buttons) {
+/**
+ * Funcion para activar la reserva y proporcionar la hora en el modal cuando el usuario vaya a pagar
+ * @param {*} buttons 
+ */
+function activarReserva(buttons) {
 
-    const detallesReserva = document.querySelector("section.info-reserva"); 
+    const detallesReserva = document.querySelector("section.info-reserva");
+    activarBtnReserva(); 
+    
+    buttons.map(btn => {
+        
+        btn.addEventListener("click", () => {
 
-    buttons.forEach(btn => {
-
-        btn.addEventListener("click", () =>  {
-
+            // Mostramos la hora que ha pulsado el usuario en el modal
             detallesReserva.children[2].children[1].textContent = btn.textContent
-            // Quitar la clase 'selected' de cualquier otro botón
-            buttons.forEach(b => b.classList.remove("selected"));
-
-            // Añadir la clase 'selected' al botón pulsado
-            btn.classList.add("selected");
             activarBtnReserva(); 
-        });
-
-    });
+        })
+    })
 }
 
-
+/**
+ * Funcion para activar o desactivar el boton de reservar segun si el horario esta habilitado o no 
+ * @returns 
+ */
 function activarBtnReserva() {
     
+    // recogemos el contenedor y el boton seleccionado
     const btn_reserva_container = document.querySelector(".reservar"); 
     const button_selected = document.querySelector("button.selected"); 
 
-    if (!button_selected) {
-        return;
-    }
+    if (!button_selected) return; // si no hay boton seleccionado paramos la logica
 
+    // si el boton no esta desactivado se activa el boton de reservar para mostrar el modal
     if (!button_selected.classList.contains("btnHorarioDisabled")){
 
         btn_reserva_container.classList.remove("button-reservation-disabled"); 
@@ -119,13 +123,17 @@ function activarBtnReserva() {
             openModal(); 
         })
         cerrarModal(); 
-    }else{
+
+    }else{ // si esta desactivado evitamos el funcionamiento del boton de reservar
         btn_reserva_container.classList.add("button-reservation-disabled"); 
         btn_reserva_container.querySelector("button").disabled = true; 
     }
 
 }
 
+/**
+ * Función para rellenar el modal con la informacion correspondiente
+ */
 export function rellenarInfoReserva() {
     
     const detallesReserva = document.querySelector("section.info-reserva"); 
@@ -139,18 +147,20 @@ export function rellenarInfoReserva() {
     detallesReserva.children[1].children[1].textContent = calendario.value
 }
 
-
+/**
+ * Función para abrir el modal
+ */
 function openModal() {
     const dialog = document.querySelector("dialog");
     dialog.showModal();
     // Mueve el foco al primer input del dialog
-    const primerInput = dialog.querySelector("input, button, [tabindex]:not([tabindex='-1'])");
-    if (primerInput) {
-        primerInput.focus();
-    }
+    
 
 }
 
+/**
+ * Función para cerrar el modal
+ */
 function cerrarModal() {
 
     const cancelarBtn = document.querySelector(".cancelar-btn");
@@ -162,6 +172,9 @@ function cerrarModal() {
     }
 }
 
+/**
+ * Función para añadir el valor del calendario y el horario seleccionado por el usuario
+ */
 export function addDataForm() {
     
     const form = document.querySelector("form"); 
@@ -175,6 +188,9 @@ export function addDataForm() {
 
 }
 
+/**
+ * Función para redirigir al usuario en caso de que no este logueado
+ */
 function redirigirLogin() {
     logueado().then(info => {                
         info.rol == false ? window.location.href = `${BASE_URL}/login` : ''; 

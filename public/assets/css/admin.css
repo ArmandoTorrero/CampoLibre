@@ -1,16 +1,24 @@
 
+main{
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .buttons{
+    border: 1px solid green;
+    flex-grow: 1;
+    width: 300px;
     padding: 10px;
 }
 
 .buttons button{
     width: 100%;
     margin: 5px 0;
-    padding: 5px 10px;
+    padding: 7.5px 10px;
     border-radius: 5px;
     border: none;
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-align: left;
 
@@ -23,4 +31,20 @@
 .cerrar-sesion button{
     color: #fff;
     background-color: red;
+}
+
+.content{
+    border: 1px solid blue;
+    flex-grow: 2;
+    padding: 10px;
+}
+
+
+.buttons .selected{
+    background-color: #dad8d8;
+}
+
+table{
+    width: 100%;
+    padding: 5px;
 }

@@ -1,10 +1,9 @@
 import { crearLabel } from "./label.js";
 import { crearInput } from "./input.js";
-import { crearBoton } from "./button.js";
 import { crearSpan } from "./span.js";
 import { initForm } from "./initForm.js";
 
-export function crearForm(labels,input_types ,values, ruta) {
+export function crearForm(labels,input_types ,values, ruta, button) {
 
     const form = document.createElement("form");
     form.action = ruta;
@@ -25,8 +24,6 @@ export function crearForm(labels,input_types ,values, ruta) {
         section.appendChild(crearSpan()); 
         form.appendChild(section);
     });
-
-    const button = crearBoton("Enviar", "disabled", "submit")
     
     form.appendChild(button);
 

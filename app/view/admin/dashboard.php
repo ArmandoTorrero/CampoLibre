@@ -3,6 +3,7 @@
         <link rel="stylesheet" href="./assets/css/admin.css">
         <link rel="stylesheet" href="./assets/css/main.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     </head>
 
     <body>
@@ -10,7 +11,7 @@
             <section class="buttons">
 
                 <article class="dashboard">
-                    <button><i class="fa-solid fa-asterisk"></i>Dashboard</button>
+                    <button class="selected"><i class="fa-solid fa-asterisk"></i>Dashboard</button>
                 </article>
                 
                 <article class="campos">
@@ -33,11 +34,18 @@
 
             </section>
 
-            <section class="content"></section>
+            <section class="content">
+
+               <h1 class="titulo"></h1>
+               <table id="miTabla"></table>
+
+            </section>
         </main>
     </body>
 
     <script type="module" src="./assets/js/views/admin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/bee72e8c16.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

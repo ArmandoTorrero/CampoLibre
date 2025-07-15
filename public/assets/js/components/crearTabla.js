@@ -9,7 +9,7 @@ export function crearTabla(headers, data) {
     let tabla = document.createElement("table");
     let thead = document.createElement("thead");
     let tbody = document.createElement("tbody");
-
+    
     // Crear encabezados de la tabla
     let tr_thead = document.createElement("tr");
     headers.forEach(header => {

@@ -116,19 +116,16 @@
 
                 $mensaje = $user ? 'Credenciales correctas' : 'Credenciales incorrectas'; 
 
+                // Si no encuentra la cuenta se lo indicamos al usuario y termina el programa
                 if (!$user) {
                     RespuestaJSON::error($mensaje);
                     return; 
                 }
 
-                if ($_SESSION["rol"] !== 2) {
-                    RespuestaJSON::exito($mensaje, null, "/perfil"); 
-                    return; 
-                }
+                // si encuentra el usuario comprobamos si es admin o usuario corriente 
+                $redirect = $_SESSION["rol"] !== 2 ? '/perfil' : '/admin'; 
+                RespuestaJSON::exito($mensaje, null, $redirect); 
 
-                RespuestaJSON::exito($mensaje, null, "/admin");
-
-        
             } catch (ValidationException $e) {
                 // Devuelve todos los mensajes de error en un array simple
                 $errores = $e->getMessage();
@@ -152,7 +149,7 @@
             }
 
             $camposValidos = Validador::validarCamposRegistroUsuario(
-                Security::sanitizeString($_POST["username"]), 
+                Security::sanitizeString($_POST["nombre"]), 
                 Security::sanitizeString($_POST["email"]), 
                 Security::sanitizeString($_POST["passwd"]), 
                 Security::sanitizeString($_POST["tlf"])
@@ -176,13 +173,26 @@
                     Security::sanitizeString($_POST["email"])
                 ); 
 
-                if (!$user) {
-                    Sessions::crearSesionLogueado();
-                    Sessions::crearSesionUsername($_POST["nombre"]);  
-                    RespuestaJSON::exito('Usuario creado', null, '/perfil'); 
-                } else {
+                if ($user) {
                     RespuestaJSON::error('Este usuario ya existe');  
+                    return; 
                 }
+
+                Sessions::crearSesionLogueado();
+                Sessions::crearSesionUsername($_POST["nombre"]);  
+                Sessions::crearSesionIdUsuario($this->userModel->create(
+                [
+                    'nombre' => $_POST["nombre"],
+                    'email' => $_POST["email"],
+                    'passwd' => password_hash($_POST["passwd"], PASSWORD_DEFAULT),
+                    'tlf' => $_POST["tlf"],
+                    'codigo_militar' => '',
+                    'rol_id' => 1
+                ]
+            ));
+                RespuestaJSON::exito('Usuario creado', null, '/perfil');
+
+                
 
             } catch (ValidationException $e) {
                 // Devuelve todos los mensajes de error en un array simple

@@ -49,7 +49,8 @@
     $router->add('/getCampoById', 'CampoController@getCampoById'); 
 
     //RESERVAS
-    $router->add('/getAllReservas', 'ReservaController@getAll'); 
+    $router->add('/getAllReservasByUser', 'ReservaController@getAllReservasByUser'); 
+    $router->add('/getAll', 'ReservaController@getAll'); 
     $router->add('/validarReserva', 'ReservaController@validarReserva'); 
 
     // FRANJA HORARIA

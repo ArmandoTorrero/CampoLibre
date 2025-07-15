@@ -1,4 +1,5 @@
 import { getUserInfo } from "./../services/user.js";
+import { crearBoton } from "./button.js";
 import { crearElemento } from "./crearElemento.js";
 import { crearForm } from "./form.js";
 import { validarForm } from "./validarForm.js";
@@ -18,16 +19,17 @@ export function userInfoCard() {
         let array_values = [info.user.nombre,info.user.email,info.user.tlf]
         let array_types = ["text", "email", "number"]; 
 
+        const button = crearBoton("Enviar", "disabled", "submit"); 
         const form = crearForm(
             array_labels,
             array_types,
             array_values, 
             '/editUser',
+            button
         ); 
 
         const inputs = [...form.querySelectorAll("input")]; 
         const spans = [...form.querySelectorAll("span")]; 
-        const buttonSubmit = form.querySelector("button") 
 
         validarForm(
             inputs,
@@ -37,7 +39,7 @@ export function userInfoCard() {
                 /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/, 
                 /^\d{9}$/
             ],
-            buttonSubmit
+            button
         )
         
         container.appendChild(form); 

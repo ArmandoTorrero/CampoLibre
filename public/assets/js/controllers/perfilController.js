@@ -1,15 +1,15 @@
 import { initForm } from "../components/initForm.js";
 import { reservasContainer } from "./../components/reservasContainer.js";
 import { userInfoCard } from "./../components/userCardInfo.js";
-import { getAllReservas } from "./../services/reserva.js";
+import { getAllReservasByUser } from "./../services/reserva.js";
 import { getUserInfo } from "./../services/user.js";
 
-function clearContent(btn,callBack) {
+export function clearContent(btn,callBack) {
 
     const dinamic_content = document.querySelector(".content");
 
     btn.addEventListener("click", () => {
-        dinamic_content.innerHTML = ""; 
+        dinamic_content.innerHTML = "";
         dinamic_content.appendChild(callBack())
     })
 
@@ -29,7 +29,7 @@ export function userInfo() {
         
     })
 
-    getAllReservas().then(result => {
+    getAllReservasByUser().then(result => {
         additional_info_container.children[1].textContent = `${result.reservas.length} reservas completadas`; 
         
         dinamic_content.appendChild(reservasContainer(result.reservas)); 

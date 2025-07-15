@@ -9,6 +9,7 @@ export async function sendForm(form, ruta) {
                 method: form.getAttribute("method"),
                 body: formData,
             });
+                        
             return await response.json();
            
         } catch (error) {

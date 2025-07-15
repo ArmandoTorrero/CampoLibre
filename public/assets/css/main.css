@@ -90,6 +90,17 @@ nav a{
     font-family: var(--texto);
 }
 
+form button{
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--fondoBotones);
+    color: var(--colortexto2);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
 
 /*
 ----------------------------
