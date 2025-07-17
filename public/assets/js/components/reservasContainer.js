@@ -8,7 +8,6 @@ export function reservasContainer(array_reservas) {
     titulo.textContent = "Mis reservas"; 
     
     
-
     const reservas = array_reservas.map(reserva => {
 
         const info_reserva = crearElemento("section", "info-reserva"); 

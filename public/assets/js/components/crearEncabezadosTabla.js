@@ -1,16 +1,13 @@
-export function crearEncabezadoTabla(idTabla, columnas) {
+import { capitalizar } from "./datatable";
 
-    const tabla = document.getElementById(idTabla)
-    const thead = document.createElement("thead"); 
-
-    tabla.appendChild(thead); 
-    const fila = document.createElement('tr');
-
-    columnas.forEach(col => {
-      const th = document.createElement('th');
-      th.textContent = col;
-      fila.appendChild(th);
-    });
-
-    thead.appendChild(fila);
+export function crearEncabezadoTabla(idTabla, keys) {
+  const thead = document.querySelector(`#${idTabla} thead`);
+  thead.innerHTML = '';
+  const fila = document.createElement('tr');
+  keys.forEach(k => {
+    const th = document.createElement('th');
+    th.textContent = capitalizar(k);
+    fila.appendChild(th);
+  });
+  thead.appendChild(fila);
 }

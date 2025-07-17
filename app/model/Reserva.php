@@ -55,12 +55,11 @@
         {
             try {
                 $sql = "SELECT
-                        pista.id AS pista_id,
+                        usuario.nombre,
                         pista.nombre AS nombre_pista,
-                        pista.precio_hora,
                         franja_horaria.fecha,
                         franja_horaria.hora_inicio,
-                        usuario.nombre
+                        pista.precio_hora
                         FROM reserva
                         JOIN usuario ON reserva.usuario_id = usuario.id
                         JOIN franja_horaria ON reserva.franja_horaria_id = franja_horaria.id

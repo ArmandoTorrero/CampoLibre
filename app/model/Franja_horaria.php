@@ -27,5 +27,20 @@
             }
         }
 
+        public function getHorarioByFechaHora($fecha, $hora)
+        {
+            try {
+                $sql = "SELECT * FROM franja_horaria WHERE fecha = :fecha AND hora_inicio = :hora";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':hora', $hora);
+                $stmt->bindParam(':fecha', $fecha);
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+                
+            } catch (PDOException $e) {
+                throw new Exception("Error" . $e->getMessage()); 
+            }
+        }
+
     }
 ?>

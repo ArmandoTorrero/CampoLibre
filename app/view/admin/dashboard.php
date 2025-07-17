@@ -1,9 +1,10 @@
 
     <head>
-        <link rel="stylesheet" href="./assets/css/admin.css">
-        <link rel="stylesheet" href="./assets/css/main.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="./assets/css/admin.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
+        
     </head>
 
     <body>
@@ -37,7 +38,10 @@
             <section class="content">
 
                <h1 class="titulo"></h1>
-               <table id="miTabla"></table>
+               <table id="miTabla">
+                    <thead></thead>
+                    <tbody></tbody>
+               </table>
 
             </section>
         </main>

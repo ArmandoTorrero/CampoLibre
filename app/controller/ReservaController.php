@@ -5,6 +5,8 @@
     use App\Model\Reserva;
     use Core\Utilities\RespuestaJSON;
     use Core\utilities\Validador;
+    use Symfony\Component\Security\Csrf\CsrfTokenManager;
+    use Symfony\Component\Security\Csrf\CsrfToken;
 
     class ReservaController {
 
@@ -16,11 +18,23 @@
             $this->franjaHorariaModel = new Franja_horaria();
         }
 
+        /**
+         * Validar la reserva realizada por un usuario
+         * @return void
+         */
         public function validarReserva()  {
 
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 RespuestaJSON::error("Metodo no permitido"); 
                 return; 
+            }
+
+            $csrfTokenManager = new CsrfTokenManager();
+            if (!$csrfTokenManager->isTokenValid(
+                new CsrfToken('user_reserva', $_POST['csrf_token'] ?? '')
+            )) {
+                RespuestaJSON::error("Token CSRF inválido");
+                return;
             }
 
             $camposValidos = Validador::validarCamposTarjetaCredito(
@@ -33,8 +47,16 @@
             if(!$camposValidos){
                 RespuestaJSON::error('Los datos no son validos'); 
                 return; 
-            }; 
+            };
 
+            $horario = $this->franjaHorariaModel->getHorarioByFechaHora($_POST["fecha"], $_POST["horario"]); 
+
+            if ($horario) {
+                RespuestaJSON::error('Horario no disponible');
+                return;  
+            }
+            
+            // creamos el horario en la tabla 'franja_horaria' y lo deshabilitamos
             $horarioID = $this->franjaHorariaModel->create([
                 'fecha' => $_POST["fecha"],
                 'hora_inicio' => $_POST["horario"],
@@ -42,13 +64,14 @@
                 'pista_id' => $_SESSION["id_campo"]
             ]);
 
+            // creamos la reserva
             $this->reservaModel->create([
                 'usuario_id' => $_SESSION["id_usuario"],
                 'metodo_pago' => 'tarjeta', 
                 'franja_horaria_id' => $horarioID
             ]);
 
-            RespuestaJSON::exito('Reserva realizada con exito', null, '/perfil'); 
+            RespuestaJSON::exito('Reserva realizada con exito', null); 
 
         }
 

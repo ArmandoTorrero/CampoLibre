@@ -102,9 +102,11 @@
             </section>
 
             <section class="buttons">
-                <button type="button" class="cancelar-btn" >Cancelar</button>
+                <button type="button" class="cancelar-btn">Cancelar</button>
                 <button type="submit" disabled class="disabled confirm-pay">Confirmar pago</button>
             </section>
+
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['reserva_csrf_token'] ?>">
         </form>
     </dialog>
 

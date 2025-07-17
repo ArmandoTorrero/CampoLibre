@@ -1,8 +1,10 @@
 <?php 
     namespace App\Controller;
     use App\Model\Campo;
-use Core\Utilities\Security;
-use Core\utilities\Sessions;
+    use Core\Utilities\Security;
+    use Core\utilities\Sessions;
+    use Symfony\Component\Security\Csrf\CsrfTokenManager;
+    use Symfony\Component\Security\Csrf\CsrfToken;
 
     class CampoController {
 
@@ -44,6 +46,11 @@ use Core\utilities\Sessions;
             $campo && $campo['disponible'] == 1 ? 
             Sessions::crearSesionIdCampo($_GET["id_campo"]) :
             Security::redirigir('/CampoLibre/public/campos');
+
+            // cremaos el token 
+            $csrfTokenManager = new CsrfTokenManager(); 
+            $token = $csrfTokenManager->getToken('user_reserva')->getValue(); 
+            $_SESSION["reserva_csrf_token"] = $token; 
 
 
             require __DIR__ . '/../view/campos/reservarCampo.php'; 

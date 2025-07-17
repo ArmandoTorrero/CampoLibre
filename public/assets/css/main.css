@@ -96,7 +96,6 @@ form button{
     border: none;
     border-radius: 5px;
     background-color: var(--fondoBotones);
-    color: var(--colortexto2);
     font-size: .9rem;
     font-weight: 500;
 }
