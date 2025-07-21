@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonSubmit = document.querySelector("button.confirm-pay"); 
     
     const form = document.querySelector("dialog form");  
-    form.method = "POST";   
+    form.method = "POST";
 
     calendar(calendario); 
     initReserva(calendario); 

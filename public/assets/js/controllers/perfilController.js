@@ -32,8 +32,8 @@ export function userInfo() {
     getAllReservasByUser().then(result => {
         additional_info_container.children[1].textContent = `${result.reservas.length} reservas completadas`; 
         
-        dinamic_content.appendChild(reservasContainer(result.reservas)); 
-        clearContent(reservasButton,() => reservasContainer(result.reservas))
+        dinamic_content.appendChild(reservasContainer(result.reservas.slice(-8))); 
+        clearContent(reservasButton,() => reservasContainer(result.reservas.slice(-8)))
         
     })
 

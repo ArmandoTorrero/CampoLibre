@@ -36,6 +36,10 @@
      opacity: 1;
 }
 
+.display-none{
+    display: none;
+}
+
 .disabled{
     background-color: rgb(36, 98, 235, 0.5);
 }

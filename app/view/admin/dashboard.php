@@ -38,10 +38,8 @@
             <section class="content">
 
                <h1 class="titulo"></h1>
-               <table id="miTabla">
-                    <thead></thead>
-                    <tbody></tbody>
-               </table>
+
+               <article class="table"></article>
 
             </section>
         </main>

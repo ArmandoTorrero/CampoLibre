@@ -8,7 +8,7 @@
     <section class="hero">
         <h1>Reserva tu campo <br> <strong>deportivo</strong></h1>
         <p>Encuentra y reserva los mejores campos deportivos de forma fácil y rápida </p>
-        <a href="#" target="_self">Ver campos disponibles</a>
+        <a href="/CampoLibre/public/campos" target="_self">Ver campos disponibles</a>
     </section>
 
     <section class="caracteristicas column-center">

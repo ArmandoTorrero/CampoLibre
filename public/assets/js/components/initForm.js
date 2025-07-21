@@ -1,5 +1,5 @@
-import { BASE_URL } from "./../config/config";
-import { sendForm } from "./sendForm";
+import { BASE_URL } from "./../config/config.js";
+import { sendForm } from "./sendForm.js";
 
 export function initForm(form, ruta) {
     

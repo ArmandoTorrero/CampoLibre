@@ -3,7 +3,7 @@ import { getHorarioByFecha } from "./../services/franja_horaria.js";
 import { getCampoById } from "./../services/campo.js";
 import { logueado } from "./../services/user.js";
 import { BASE_URL } from "./../config/config.js";
-import { buttonSelected } from "../components/buttonSelected.js";
+import { buttonSelected } from "./../components/buttonSelected.js";
 
 /**
  * Rellenar la información del campo
@@ -34,6 +34,9 @@ export function initReserva(calendario) {
 
     // si el calendario ya tiene un valor hacemos la logica 
     if (calendario.value.trim() != "") {
+
+        desactivarHorasPasadas(buttons, calendario.value);
+
         getHorarioByFecha(calendario.value).then(fechas => {
 
             setButtonsDisabled(fechas, buttons);
@@ -45,6 +48,8 @@ export function initReserva(calendario) {
     
     // cuando el usuario pulse una fecha se activa la lógica
     calendario.addEventListener("input", (ev) => {
+        
+        desactivarHorasPasadas(buttons, ev.target.value);
         
         buttons.map(btn => {
             btn.disabled = false; 
@@ -132,6 +137,27 @@ function activarBtnReserva() {
 }
 
 /**
+ * Función para desactivar los botones de horas pasadas
+ * @param {*} buttons 
+ * @param {*} fechaSeleccionada 
+ */
+function desactivarHorasPasadas(buttons, fechaSeleccionada) {
+  const hoy = new Date();
+  const fechaHoy = hoy.toISOString().slice(0, 10); // formato yyyy-mm-dd
+
+  if (fechaSeleccionada === fechaHoy) {
+    const horaActual = hoy.getHours();
+    buttons.forEach(btn => {
+      const horaBtn = parseInt(btn.value.split(":")[0], 10);
+      if (horaBtn <= horaActual) {
+        btn.disabled = true;
+        btn.classList.add("btnHorarioDisabled");
+      }
+    });
+  }
+}
+
+/**
  * Función para rellenar el modal con la informacion correspondiente
  */
 export function rellenarInfoReserva() {
@@ -152,10 +178,8 @@ export function rellenarInfoReserva() {
  */
 function openModal() {
     const dialog = document.querySelector("dialog");
-    dialog.showModal();
-    // Mueve el foco al primer input del dialog
+    dialog.showModal();    
     
-
 }
 
 /**

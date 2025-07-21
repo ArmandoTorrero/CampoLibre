@@ -10,8 +10,11 @@ import { getCampoByFiltro } from "./../services/campo";
  */
 export function selectModalidad(select) {
     
-    getModalidades().then(modalidades => {
-        modalidades.modalidades.map(modalidad => {
+    getModalidades().then(response => {
+
+        const { modalidades } = response
+
+        modalidades.map(modalidad => {
             select.appendChild(crearOption(modalidad.nombre, modalidad.id));
         }); 
         
@@ -39,36 +42,34 @@ export function initFiltros() {
     const camposContainer = document.querySelector("section.campos"); 
     const buscador = document.getElementById("buscador");
     const select = document.getElementById("categoria");
-    
+    const form = document.querySelector("form.filtros");
 
-    buscador.addEventListener("input", (ev) => {
-
-        camposContainer.innerHTML = ""; // Limpiar los campos antes de mostrar los resultados
-                
-        getCampoByFiltro(ev.target.value, select.value).then(data => {
-
-            data.campos.map(campo => {
-                camposContainer.appendChild(
-                    cardCampoDestacado(campo.id, campo.nombre, campo.precio_hora, campo.modalidad_id, campo.disponible)
-                )
-            })
-            
-            
-        })
-    })
-
-    select.addEventListener("input", (ev) => {
-
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        
         camposContainer.innerHTML = ""; // Limpiar los campos antes de mostrar los resultados
 
-        getCampoByFiltro(buscador.value, ev.target.value).then(data => {
+        getCampoByFiltro(buscador.value, select.value).then(data => {
             
-            data.campos.map(campo => {
-                camposContainer.appendChild(
-                    cardCampoDestacado(campo.id, campo.nombre, campo.precio_hora, campo.modalidad_id, campo.disponible)
-                )
-            })
+            const { campos } = data;
+            
+            if (campos.length !== 0) {
+
+                campos.map(campo => {
+                    camposContainer.appendChild(
+                        cardCampoDestacado(campo.id, campo.nombre, campo.precio_hora, campo.modalidad_id, campo.disponible)
+                    )
+                })
+
+            }else{
+                let noResults = document.createElement("h2");
+                noResults.textContent = "No se encontraron campos";
+                camposContainer.appendChild(noResults);
+            }
+
+            
         })
         
     })
+
 }

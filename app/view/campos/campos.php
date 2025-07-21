@@ -8,12 +8,19 @@
     <section class="main">
         <h1>Campos deportivos</h1>
 
-        <section class="filtros">
+        <section class="filtros-container">
 
-            <input type="text" name="bucador" id="buscador" placeholder="Buscar por nombre">
-            <select name="categoria" id="categoria">
-                <option value="0" selected>Todos</option>
-            </select>
+            <form action="#" method="post" class="filtros">
+
+                <input type="text" name="bucador" id="buscador" placeholder="Buscar por nombre">
+
+                <select name="categoria" id="categoria">
+                    <option value="0" selected>Todos</option>
+                </select>
+                
+                <button type="submit">Buscar</button>
+
+            </form>
 
         </section>
         

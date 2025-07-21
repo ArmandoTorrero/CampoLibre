@@ -5,7 +5,7 @@ export function reservasContainer(array_reservas) {
     
     const container = crearElemento("section", "reservas_container"); 
     const titulo = crearElemento("h1", "mis-reservas-title")
-    titulo.textContent = "Mis reservas"; 
+    titulo.textContent = "Ultimas reservas"; 
     
     
     const reservas = array_reservas.map(reserva => {

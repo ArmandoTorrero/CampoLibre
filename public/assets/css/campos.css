@@ -14,7 +14,7 @@ body{
 .campos{
     flex-wrap: wrap;
     width: 100%;
-    padding: 25px 0;
+    padding: 5% 0;
     gap: 20px;
 }
 
@@ -59,11 +59,13 @@ body{
         border: none;
         border-radius: 5px;
         background-color: var(--fondoBotones);
+        transition: all 0.3s ease;
 
         a{
             font-size: 0.8rem;
             font-weight: 550;
             color: var(--colortexto2);
+            
         }
     }
     
@@ -107,6 +109,16 @@ body{
     }
 }
 
+form{
+    width: 100%;
+}
+
+form button{
+    color: var(--colortexto2);
+}
+
+
+
 
 @media screen and (width >=768px){
     
@@ -129,16 +141,25 @@ body{
         flex-direction: row;
 
         input{
-            flex-grow: 2;
+            flex-grow: 1;
             width: 700px;
         }
 
-        select{
+        select, button{
             flex-grow: 1;
             width: 200px;
         }
+        
 
     }
+
+    .pista .content > .precio-button{
+
+        button.ver-detalles:hover{
+            background-color: rgb(36, 98, 235, 0.8);;
+        }
+    }
+
 
     
 }

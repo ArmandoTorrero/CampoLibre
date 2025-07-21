@@ -97,6 +97,7 @@
                 Security::sanitizeString($_POST["passwd"])
             ); 
             
+            // validamos los campos del formulario de login
             if (!$camposValidos) {
                 RespuestaJSON::error('Los campos no son validos'); 
                 return; 
@@ -108,6 +109,7 @@
                     ->key('passwd', v::stringType()->length(5, null)->setName('Contraseña'))
                     ->assert($_POST);  
 
+                // Comprobamos que el usuario existe 
                 $user = Validador::existeUsuarioLogin(
                     $this->userModel->getAll(),
                     Security::sanitizeString($_POST["email"]),
@@ -123,7 +125,7 @@
                 }
 
                 // si encuentra el usuario comprobamos si es admin o usuario corriente 
-                $redirect = $_SESSION["rol"] !== 2 ? '/perfil' : '/admin'; 
+                $redirect = $_SESSION["rol"] !== 2 ? '/campos' : '/admin'; 
                 RespuestaJSON::exito($mensaje, null, $redirect); 
 
             } catch (ValidationException $e) {
