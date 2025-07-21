@@ -1,6 +1,4 @@
-import { BASE_URL } from "./../config/config";
-import { crearForm } from "./../components/form";
-import { crearBoton } from "./../components/button";
+import { BASE_URL } from "./../config/config.js";
 
 export const changeNav = (rol) => {
     

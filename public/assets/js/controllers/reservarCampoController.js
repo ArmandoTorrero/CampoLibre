@@ -34,38 +34,67 @@ export function initReserva(calendario) {
 
     // si el calendario ya tiene un valor hacemos la logica 
     if (calendario.value.trim() != "") {
-
-        desactivarHorasPasadas(buttons, calendario.value);
-
-        getHorarioByFecha(calendario.value).then(fechas => {
-
-            setButtonsDisabled(fechas, buttons);
-            const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled")); 
-            buttonSelected(buttonsNotDisabled, 'selected');
-            activarReserva(buttonsNotDisabled); 
-        });
+        
+        procesarFechaSeleccionada(calendario.value, buttons);
     }
     
     // cuando el usuario pulse una fecha se activa la lógica
     calendario.addEventListener("input", (ev) => {
         
-        desactivarHorasPasadas(buttons, ev.target.value);
+        procesarFechaSeleccionada(ev.target.value, buttons);
+
+        // buttons.map(btn => {
+        //     btn.disabled = false; 
+        //     btn.classList.remove("btnHorarioDisabled")
+        // })
         
-        buttons.map(btn => {
-            btn.disabled = false; 
-            btn.classList.remove("btnHorarioDisabled")
-        })
+        // getHorarioByFecha(ev.target.value).then((fechas) => {
 
-        getHorarioByFecha(ev.target.value).then((fechas) => {
-                        
-            setButtonsDisabled(fechas, buttons);
-            const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));             
-            buttonSelected(buttonsNotDisabled, 'selected'); 
-            activarReserva(buttonsNotDisabled); 
-
-        });
+        //     const { horarios } = fechas; 
+            
+        //     setButtonsDisabled(horarios, buttons);
+        //     const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));             
+        //     buttonSelected(buttonsNotDisabled, 'selected'); 
+        //     activarReserva(buttonsNotDisabled); 
+        //     desactivarHorasPasadas(buttonsNotDisabled, ev.target.value);
+        //     activarBtnReserva(); 
+        // });
     });
 
+}
+
+async function procesarFechaSeleccionada(fecha, buttons) {
+    
+    try {
+
+        resetearEstadoBotones(buttons);
+
+        const { horarios } = await getHorarioByFecha(fecha);
+
+        setButtonsDisabled(horarios, buttons); 
+
+        const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));  
+
+        activarReserva(buttonsNotDisabled);
+        buttonSelected(buttonsNotDisabled, 'selected');
+        desactivarHorasPasadas(buttonsNotDisabled, fecha);
+        activarBtnReserva(); 
+
+
+
+
+    } catch (error) {
+        console.error("Error al procesar la fecha seleccionada:", error);
+        
+    }
+}
+
+function resetearEstadoBotones(buttons) {
+    buttons.forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove("btnHorarioDisabled");
+    });
+    
 }
 
 /**
@@ -75,7 +104,7 @@ export function initReserva(calendario) {
  */
 function setButtonsDisabled(array_horas, array_btns) {
 
-    let horarios = array_horas.horarios.map(hora => hora.hora_inicio.slice(0, 5));
+    let horarios = array_horas.map(hora => hora.hora_inicio.slice(0, 5));
 
     const disabledButtons = array_btns.filter(btn => horarios.includes(btn.value))
 
@@ -93,8 +122,7 @@ function setButtonsDisabled(array_horas, array_btns) {
 function activarReserva(buttons) {
 
     const detallesReserva = document.querySelector("section.info-reserva");
-    activarBtnReserva(); 
-    
+        
     buttons.map(btn => {
         
         btn.addEventListener("click", () => {
@@ -119,6 +147,7 @@ function activarBtnReserva() {
     if (!button_selected) return; // si no hay boton seleccionado paramos la logica
 
     // si el boton no esta desactivado se activa el boton de reservar para mostrar el modal
+    
     if (!button_selected.classList.contains("btnHorarioDisabled")){
 
         btn_reserva_container.classList.remove("button-reservation-disabled"); 
@@ -146,9 +175,12 @@ function desactivarHorasPasadas(buttons, fechaSeleccionada) {
   const fechaHoy = hoy.toISOString().slice(0, 10); // formato yyyy-mm-dd
 
   if (fechaSeleccionada === fechaHoy) {
+
     const horaActual = hoy.getHours();
+
     buttons.forEach(btn => {
       const horaBtn = parseInt(btn.value.split(":")[0], 10);
+
       if (horaBtn <= horaActual) {
         btn.disabled = true;
         btn.classList.add("btnHorarioDisabled");
@@ -160,17 +192,18 @@ function desactivarHorasPasadas(buttons, fechaSeleccionada) {
 /**
  * Función para rellenar el modal con la informacion correspondiente
  */
-export function rellenarInfoReserva() {
+export async function rellenarInfoReserva() {
     
     const detallesReserva = document.querySelector("section.info-reserva"); 
     const calendario = document.getElementById("fecha"); 
     
-    getCampoById().then(campo => {
-        
-        detallesReserva.children[0].children[1].textContent = campo.info_campo.nombre        
-    })
+    const { info_campo } = await getCampoById(); 
+
+    detallesReserva.children[0].children[1].textContent = info_campo.nombre        
 
     detallesReserva.children[1].children[1].textContent = calendario.value
+    
+
 }
 
 /**
@@ -189,34 +222,53 @@ function cerrarModal() {
 
     const cancelarBtn = document.querySelector(".cancelar-btn");
     const dialog = document.querySelector("dialog");
-    if (cancelarBtn && dialog) {
-        cancelarBtn.addEventListener("click", () => {
-            dialog.close();
-        });
-    }
+
+    if (!cancelarBtn || !dialog) return;  
+
+    cancelarBtn.addEventListener("click", () => {
+        dialog.close();
+    });
 }
 
 /**
  * Función para añadir el valor del calendario y el horario seleccionado por el usuario
  */
 export function addDataForm() {
+
+    try {
+
+        const form = document.querySelector("form"); 
+        const button_selected_value = document.querySelector("button.selected").value; 
+        const calendario_value = document.getElementById("fecha").value; 
+
+        const input_hidden_fecha = crearInput('fecha', 'hidden', calendario_value); 
+        const input_hidden_horario = crearInput('horario', 'hidden', `${button_selected_value}:00`); 
     
-    const form = document.querySelector("form"); 
-    const button_selected_value = document.querySelector("button.selected").value; 
-    const calendario_value = document.getElementById("fecha").value; 
+        form.append(input_hidden_fecha,input_hidden_horario); 
+        
+    } catch (error) {
+        console.error("Error al añadir datos al formulario:", error);
+        
+    }
+    
 
-    const input_hidden_fecha = crearInput('fecha', 'hidden', calendario_value); 
-    const input_hidden_horario = crearInput('horario', 'hidden', `${button_selected_value}:00`); 
-
-    form.append(input_hidden_fecha,input_hidden_horario); 
 
 }
 
 /**
  * Función para redirigir al usuario en caso de que no este logueado
  */
-function redirigirLogin() {
-    logueado().then(info => {                
-        info.rol == false ? window.location.href = `${BASE_URL}/login` : ''; 
-    })
+async function redirigirLogin() {
+
+    try {
+        const { rol } = await logueado(); 
+        if(!rol){
+            window.location.href = `${BASE_URL}/login`;
+            return; 
+        }
+    } catch (error) {
+        console.error("Error al redirigir al login:", error);
+        
+    }
+    
 }

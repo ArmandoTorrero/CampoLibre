@@ -1,7 +1,7 @@
-import { crearOption } from "./../components/createOption";
-import { getModalidades } from "./../services/modalidad";
-import { cardCampoDestacado } from "./../components/cardCampoPopular";
-import { getCampoByFiltro } from "./../services/campo";
+import { crearOption } from "./../components/createOption.js";
+import { getModalidades } from "./../services/modalidad.js";
+import { cardCampoDestacado } from "./../components/cardCampoPopular.js";
+import { getCampoByFiltro } from "./../services/campo.js";
 
 
 /**
@@ -28,9 +28,9 @@ export function initCampos(campos){
 
     const camposContainer = document.querySelector("section.campos"); 
 
-        campos.map(campo => {
+        campos.map(campo => {            
             camposContainer.appendChild(
-                cardCampoDestacado(campo.id, campo.nombre, campo.precio_hora, campo.modalidad_id, campo.disponible)
+                cardCampoDestacado(campo)
             )
         })
     
@@ -57,7 +57,7 @@ export function initFiltros() {
 
                 campos.map(campo => {
                     camposContainer.appendChild(
-                        cardCampoDestacado(campo.id, campo.nombre, campo.precio_hora, campo.modalidad_id, campo.disponible)
+                        cardCampoDestacado(campo)
                     )
                 })
 

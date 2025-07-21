@@ -1,6 +1,6 @@
 <?php 
     namespace App\Controller;
-
+    
     use App\Model\User;
     use Core\Utilities\RespuestaJSON;
     use Core\Utilities\Security;
@@ -192,7 +192,7 @@
                     'rol_id' => 1
                 ]
             ));
-                RespuestaJSON::exito('Usuario creado', null, '/perfil');
+                RespuestaJSON::exito('Usuario creado', null, '/campos');
 
                 
 
@@ -211,20 +211,20 @@
                 return; 
             }
 
-            $camposValidos = Validador::validarNombre($_POST["input_0"]) 
-            && Validador::validarEmail($_POST["input_1"]) 
-            && Validador::validarTelefono($_POST["input_2"]); 
+            $camposValidos = Validador::validarNombre(Security::sanitizeString($_POST["input_0"])) 
+            && Validador::validarEmail(Security::sanitizeString($_POST["input_1"])) 
+            && Validador::validarTelefono(Security::sanitizeString($_POST["input_2"])); 
 
             if (!$camposValidos) {
                 RespuestaJSON::error('Los campos no son validos'); 
                 return; 
             }
 
-             // comprobar que al cambiar el email el email ya esta asignado a otro usuario
+             // comprobar que al cambiar el email si el email ya esta asignado a otro usuario
             $usuarioExistente = $this->userModel->getByEmail($_POST['input_1']);
 
             if ($usuarioExistente && $usuarioExistente['id'] != $_SESSION["id_usuario"]) {
-                RespuestaJSON::error('El correo electrónico ya está registrado por otro usuario'); 
+                RespuestaJSON::error('Este correo ya está registrado'); 
                 return;
             }
 

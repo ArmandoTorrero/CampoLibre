@@ -1,4 +1,4 @@
-import { fetchData } from "../components/fetchData.js";
+import { fetchData } from "./../components/fetchData.js";
 
 
 export function getAllReservasByUser() {

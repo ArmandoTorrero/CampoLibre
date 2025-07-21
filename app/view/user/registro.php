@@ -18,7 +18,7 @@
 
                 <label for="nombre">Nombre de usuario</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Tu nombre" required>
-                <span class="noVisible">El formato no es correcto</span>
+                <span class="noVisible">El nombre debe contener entre 3 y 15 caracteres</span>
 
             </article>
 
@@ -34,7 +34,12 @@
 
                 <label for="passwd">Contraseña</label>
                 <input type="password" name="passwd" id="passwd" placeholder="Contraseña" required>
-                <span class="noVisible">El formato no es correcto</span>
+                <span class="noVisible">La contraseña debe tener al menos 5 caracteres</span>
+
+                <div class="mostrar-passwd">
+                    <input type="checkbox" name="mostrar" id="mostrar">
+                    <label for="mostrar">Mostrar contraseña</label>
+                </div>
 
             </article>
 
@@ -42,7 +47,7 @@
 
                 <label for="tlf">Telefono</label>
                 <input type="text" name="tlf" id="tlf" placeholder="Nº telefono" required>
-                <span class="noVisible">El formato no es correcto</span>
+                <span class="noVisible">El teléfono debe tener 9 caracteres</span>
                 
             </article>
 

@@ -24,7 +24,7 @@
 
                 <label for="passwd">Contraseña</label>
                 <input type="password" name="passwd" id="passwd" placeholder="Contraseña" required>
-                <span class="noVisible">El formato no es correcto</span>
+                <span class="noVisible">La contraseña debe tener 5 caracteres o más</span>
                 
                 <div class="mostrar-passwd">
                     <input type="checkbox" name="mostrar" id="mostrar">

@@ -2,8 +2,7 @@ import { validarForm } from "./../components/validarForm";
 import { calendar } from "./../components/calendarComponent";
 import { addDataForm, infoCampo, initReserva, rellenarInfoReserva } from "./../controllers/reservarCampoController"
 import { initForm } from "./../components/initForm";
-import { logueado } from "../services/user";
-import { BASE_URL } from "../config/config";
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

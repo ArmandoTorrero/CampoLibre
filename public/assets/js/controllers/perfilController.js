@@ -1,4 +1,4 @@
-import { initForm } from "../components/initForm.js";
+import { initForm } from "./../components/initForm.js";
 import { reservasContainer } from "./../components/reservasContainer.js";
 import { userInfoCard } from "./../components/userCardInfo.js";
 import { getAllReservasByUser } from "./../services/reserva.js";

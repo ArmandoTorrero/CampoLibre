@@ -9,13 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getCampos().then(campos => {
         
         campos.slice(0,3).map(campo => {
-            camposContainer.appendChild(cardCampoDestacado(
-                campo.id, 
-                campo.nombre, 
-                campo.precio_hora, 
-                campo.modalidad_id, 
-                campo.disponible
-            ));
+            camposContainer.appendChild(cardCampoDestacado(campo));
             
         })
     })

@@ -1,4 +1,4 @@
-import { BASE_URL } from "./../config/config";
+import { BASE_URL } from "./../config/config.js";
 
 
 export async function getHorarioByFecha(fecha) {

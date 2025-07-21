@@ -4,14 +4,14 @@ import { crearElemento } from "./crearElemento.js";
 
 /**
  * Componente que crea una carta de un campo 
- * @param {*} id_campo 
+ * @param {*} id
  * @param {*} nombre 
- * @param {*} precio 
- * @param {*} categoria_id 
+ * @param {*} precio_hora 
+ * @param {*} modalidad_id 
  * @param {*} disponible 
  * @returns 
  */
-export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponible){
+export function cardCampoDestacado({ id,nombre,precio_hora,modalidad_id, disponible }){
 
     let card_pista = crearElemento('article', 'pista'); 
 
@@ -28,7 +28,7 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
 
     // Añadimos el precio y el boton junto con el enlace
     let precio_span = crearElemento('span', 'precio');   
-    precio_span.textContent = `Desde ${precio}€/hora`;
+    precio_span.textContent = `Desde ${precio_hora}€/hora`;
 
     let button = crearElemento('button', 'ver-detalles');
     let enlace = crearElemento('a', 'enlace');
@@ -44,7 +44,7 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
         
         if (info.rol === 1) {
             enlace.textContent = "Reservar";
-            enlace.href = `${BASE_URL}/reservarCampo?id_campo=${id_campo}`;
+            enlace.href = `${BASE_URL}/reservarCampo?id_campo=${id}`;
         }
 
         if (disponible !== 1) {
@@ -57,7 +57,7 @@ export function cardCampoDestacado(id_campo,nombre,precio,categoria_id, disponib
         }
     })    
     
-    categoria.textContent = categoria_id == 1 ? "Futsal" : categoria_id == 2 ? "Tenis" : "Padel"; 
+    categoria.textContent = modalidad_id == 1 ? "Futsal" : modalidad_id == 2 ? "Tenis" : "Padel"; 
 
     button.appendChild(enlace);
 
