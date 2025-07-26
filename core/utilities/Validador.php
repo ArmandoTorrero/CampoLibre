@@ -3,9 +3,22 @@
 namespace Core\utilities;
 
 use Core\utilities\Sessions;
+use Core\Utilities\RespuestaJSON;
 
 class Validador
 {
+    /**
+     * Validar el método HTTP
+     * @param mixed $metodo
+     * @return void
+     */
+    public static function validarMetodoHTTP($metodo) {
+        if ($_SERVER['REQUEST_METHOD'] !== strtoupper($metodo)) {
+            http_response_code(405); // Método no permitido
+            RespuestaJSON::error("Metodo no permitido");
+            exit;
+        }
+    }
 
     /**
      * Validar nombre
@@ -164,6 +177,7 @@ class Validador
                 Sessions::crearSesionLogueado();
                 Sessions::crearSesionIdUsuario($usuario['id']);
                 Sessions::crearSesionUsername($usuario['nombre']);
+                Sessions::crearSesionEmail($usuario['email']);
                 Sessions::crearSesionRol($usuario['rol_id']);
                 return true;
             }

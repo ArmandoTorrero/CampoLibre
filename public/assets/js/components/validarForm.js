@@ -1,6 +1,7 @@
 export function validarForm(array_inputs, array_spans, array_regex, buttonSubmit) {
     // Por defecto, el botón está deshabilitado
-    buttonSubmit.disabled = true;    
+    buttonSubmit.disabled = true;
+    buttonSubmit.classList.add("disabled");    
 
     // Función para comprobar el estado de todos los inputs
     function checkFormValidity() {

@@ -3,7 +3,7 @@ import { sendForm } from "./sendForm.js";
 
 export function initForm(form, ruta) {
     
-    sendForm(form, ruta).then((result) => {
+    sendForm(form, ruta).then((result) => {        
                 
         Swal.fire({
             title: result.mensaje,

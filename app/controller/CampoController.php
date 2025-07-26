@@ -1,10 +1,13 @@
 <?php 
     namespace App\Controller;
     use App\Model\Campo;
+    use Core\Utilities\RespuestaJSON;
     use Core\Utilities\Security;
     use Core\utilities\Sessions;
-    use Symfony\Component\Security\Csrf\CsrfTokenManager;
+    use Core\utilities\Validador;
+    use Exception;
     use Symfony\Component\Security\Csrf\CsrfToken;
+    use Symfony\Component\Security\Csrf\CsrfTokenManager;
 
     class CampoController {
 
@@ -40,9 +43,9 @@
         public function reservarCampo() {
 
             $campo = $this->campoModel->getById($_GET["id_campo"]); 
+            $_SESSION["nombre_campo"] = $campo['nombre'];
 
             // comprobamos que el campo existe y esta disponoble, en caso contrario redirgimos al usuario
-
             $campo && $campo['disponible'] == 1 ? 
             Sessions::crearSesionIdCampo($_GET["id_campo"]) :
             Security::redirigir('/CampoLibre/public/campos');
@@ -57,7 +60,62 @@
         }
 
         public function getCampoById() {
-            echo json_encode(['info_campo' => $this->campoModel->getById($_SESSION["id_campo"])]); 
+
+            $datos = json_decode(file_get_contents("php://input"), true);
+
+            if (!isset($datos['id_campo']) || empty($datos['id_campo'])) {
+                echo json_encode(['info_campo' => $this->campoModel->getById($_SESSION["id_campo"])]); 
+                return; 
+            }
+
+            echo json_encode(['info_campo' => $this->campoModel->getById($datos['id_campo'])]);
+
+        }
+
+        public function deleteCampo(){
+            // Validar que el método sea POST
+            Validador::validarMetodoHTTP('POST');
+
+            // comprobar si esta logueado
+            if (!Security::estaLogueado()) {
+                RespuestaJSON::error("No estás logueado");
+                return;
+            }
+
+            // Comprobar si el usuario es admin
+            if ($_SESSION["rol"] !== 2) {
+                RespuestaJSON::error("No tienes permisos para eliminar campos");
+                return;
+            }
+
+            try {
+                $this->campoModel->delete($_POST["id_campo"]);
+                RespuestaJSON::exito("Campo eliminado correctamente");
+            } catch (Exception $e) {
+                RespuestaJSON::error("Error al eliminar el campo: " . $e->getMessage());
+                return;
+            }
+        }
+
+        public function editCampo() {
+            
+            Validador::validarMetodoHTTP('POST');
+
+            $csrfTokenManager = new CsrfTokenManager();
+            if (!$csrfTokenManager->isTokenValid(new CsrfToken('edit_campo', $_POST['csrf_token'] ?? ''))) {
+                RespuestaJSON::error("Token CSRF inválido");
+                return;
+            }
+
+            $this->campoModel->update(
+                [
+                    'nombre' => $_POST["nombre_campo"],
+                    'disponible' => $_POST["disponibilidad"],
+                    'modalidad_id' => $_POST["modalidad"]
+                ], $_POST["id_campo"]
+            );
+
+            RespuestaJSON::exito("Campo editado correctamente");
         }
 
         

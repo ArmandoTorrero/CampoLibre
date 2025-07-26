@@ -18,18 +18,22 @@
     $router = new Router();
     
     // RUTAS PARA VISTAS
+
+    // USUARIO
     $router->add('/', 'UserController@landingPage'); 
-    $router->add('/login', 'UserController@loginPage'); 
+    $router->add('/login', 'UserController@loginPage');
+    $router->add('/googleLogin', 'UserController@googleLogin'); 
+    $router->add('/googleCallback', 'UserController@googleCallback'); 
     $router->add('/registro', 'UserController@registerPage');
     $router->add('/perfil', 'UserController@profilePage'); 
     $router->add('/PyR', 'UserController@PyR');
     $router->add('/admin', 'UserController@admin'); 
  
-
+    //CAMPOS
     $router->add('/campos', 'CampoController@CamposPage'); 
     $router->add('/reservarCampo', 'CampoController@reservarCampo'); 
 
-
+    //---------------------------------------------------------------------------------------------------//
 
     // RUTAS QUE MANDAN JSON ENCODE
 
@@ -39,6 +43,7 @@
     $router->add('/validarLogin', 'UserController@validarLogin');
     $router->add('/validarRegistro', 'UserController@validarRegistro');
     $router->add('/editUser', 'UserController@editUser');
+    $router->add('/deleteUser', 'UserController@deleteUser');
     $router->add('/getUserInfo', 'UserController@getUserInfo');
     $router->add('/cerrarSesion', 'UserController@cerrarSesion');
     
@@ -47,6 +52,9 @@
     $router->add('/getCampos', 'CampoController@getCampos');    
     $router->add('/getCampoByfiltro', 'CampoController@getCampoByfiltro'); 
     $router->add('/getCampoById', 'CampoController@getCampoById'); 
+    $router->add('/editCampo', 'CampoController@editCampo'); 
+    $router->add('/deleteCampo', 'CampoController@deleteCampo'); 
+
 
     //RESERVAS
     $router->add('/getAllReservasByUser', 'ReservaController@getAllReservasByUser'); 

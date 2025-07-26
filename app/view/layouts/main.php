@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/CampoLibre/public/campos">Campos</a>
+                            <a class="nav-link active" aria-current="page" href="/CampoLibre/public/campos">Reservar campos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/CampoLibre/public/PyR">Preguntas frecuentes</a>

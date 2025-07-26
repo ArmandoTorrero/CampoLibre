@@ -56,7 +56,7 @@
         </article>
 
         <article class="campos column-center"></article>
-        <a class="ver_campos" href="" target="_self">Ver todos los campos</a>
+        <a class="ver_campos" href="/CampoLibre/public/campos" target="_self">Ver todos los campos</a>
     </section>
 
     <section class="pree-footer column-center">
@@ -64,7 +64,7 @@
         <p>Reserva tu primera instalación deportiva en minutos y descubre lo fácil que es con SportReserve</p>
         <article class="buttons">
             <a href="/CampoLibre/public/login" target="_self">Iniciar sesión</a>
-            <a href="" target="_self">Campos disponibles</a>
+            <a href="/CampoLibre/public/campos" target="_self">Campos disponibles</a>
         </article>
     </section>
 

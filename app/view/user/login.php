@@ -47,9 +47,9 @@
 
 
         <a href="/CampoLibre/public/registro" target="_self" class="registrate">¿No tienes una cuenta? <strong>Crea una aqui</strong></a>
+
         <article class="buttons">
-            <a href="#" target="_self"><i class="fa-brands fa-google"></i> Google</a>
-            <a href="#" target="_self"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="/CampoLibre/public/googleLogin" target="_self"><i class="fa-brands fa-google"></i> Google</a>
         </article>
     </section>
 

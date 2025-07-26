@@ -31,7 +31,7 @@ export function infoCampo() {
 export function initReserva(calendario) {
 
     const buttons = [...document.querySelectorAll(".horario")];
-
+    
     // si el calendario ya tiene un valor hacemos la logica 
     if (calendario.value.trim() != "") {
         
@@ -43,22 +43,6 @@ export function initReserva(calendario) {
         
         procesarFechaSeleccionada(ev.target.value, buttons);
 
-        // buttons.map(btn => {
-        //     btn.disabled = false; 
-        //     btn.classList.remove("btnHorarioDisabled")
-        // })
-        
-        // getHorarioByFecha(ev.target.value).then((fechas) => {
-
-        //     const { horarios } = fechas; 
-            
-        //     setButtonsDisabled(horarios, buttons);
-        //     const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));             
-        //     buttonSelected(buttonsNotDisabled, 'selected'); 
-        //     activarReserva(buttonsNotDisabled); 
-        //     desactivarHorasPasadas(buttonsNotDisabled, ev.target.value);
-        //     activarBtnReserva(); 
-        // });
     });
 
 }
@@ -75,13 +59,11 @@ async function procesarFechaSeleccionada(fecha, buttons) {
 
         const buttonsNotDisabled = buttons.filter(btn => !btn.classList.contains("disabled"));  
 
-        activarReserva(buttonsNotDisabled);
         buttonSelected(buttonsNotDisabled, 'selected');
+        
+        activarReserva(buttonsNotDisabled);
         desactivarHorasPasadas(buttonsNotDisabled, fecha);
         activarBtnReserva(); 
-
-
-
 
     } catch (error) {
         console.error("Error al procesar la fecha seleccionada:", error);

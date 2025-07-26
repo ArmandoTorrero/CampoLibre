@@ -3,8 +3,10 @@
 
     use App\Model\Franja_horaria;
     use App\Model\Reserva;
-    use Core\Utilities\RespuestaJSON;
+use Core\Services\EmailService;
+use Core\Utilities\RespuestaJSON;
     use Core\utilities\Validador;
+    use Respect\Validation\Rules\Email;
     use Symfony\Component\Security\Csrf\CsrfTokenManager;
     use Symfony\Component\Security\Csrf\CsrfToken;
 
@@ -12,10 +14,12 @@
 
         private $reservaModel;
         private $franjaHorariaModel; 
+        private $emailService;
 
         public function __construct() {
             $this->reservaModel = new Reserva();
             $this->franjaHorariaModel = new Franja_horaria();
+            $this->emailService = new EmailService();
         }
 
         /**
@@ -24,10 +28,7 @@
          */
         public function validarReserva()  {
 
-            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                RespuestaJSON::error("Metodo no permitido"); 
-                return; 
-            }
+            Validador::validarMetodoHTTP('POST'); 
 
             $csrfTokenManager = new CsrfTokenManager();
             if (!$csrfTokenManager->isTokenValid(
@@ -49,7 +50,7 @@
                 return; 
             };
 
-            $horario = $this->franjaHorariaModel->getHorarioByFechaHora($_POST["fecha"], $_POST["horario"]); 
+            $horario = $this->franjaHorariaModel->getHorarioByFechaHora($_POST["fecha"], $_POST["horario"], $_SESSION["id_campo"]); 
 
             if ($horario) {
                 RespuestaJSON::error('Horario no disponible');
@@ -71,6 +72,16 @@
                 'franja_horaria_id' => $horarioID
             ]);
 
+            // Enviamos un email de confirmación al usuario
+            $this->emailService->enviarConfirmacionReserva(
+                $_SESSION["email"], 
+                $_SESSION["nombre_usuario"],
+                $_POST["fecha"],
+                $_POST["horario"],
+                $_SESSION["nombre_campo"] 
+            );
+
+            // Respuesta exitosa
             RespuestaJSON::exito('Reserva realizada con exito', null); 
 
         }

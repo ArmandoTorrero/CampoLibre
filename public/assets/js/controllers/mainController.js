@@ -4,7 +4,6 @@ export const changeNav = (rol) => {
     
     if (rol == false) return;  
 
-    const navBar = document.querySelector(".navbar-nav"); 
     const enlace = document.querySelector(".navbar-nav").children[2].children[0]; 
         
     enlace.textContent = "Perfil"; 

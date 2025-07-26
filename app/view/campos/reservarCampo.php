@@ -53,10 +53,11 @@
     
     <dialog>
         <h1>Detalles de la reserva</h1>
+
         <section class="info-reserva">
 
             <article class="nombre-campo">
-                <span>Campo :</span>
+                <span>Campo: </span>
                 <span></span>
             </article>
 
@@ -71,6 +72,7 @@
             </article>
 
         </section>
+
         <form action="#" method="dialog" >
             
             <section class="label-input">

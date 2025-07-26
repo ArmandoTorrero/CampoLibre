@@ -1,6 +1,7 @@
 <?php
 
     namespace Core\Utilities;
+    use Core\Utilities\RespuestaJSON; 
     class Security{
         
         /**
@@ -54,7 +55,6 @@
         public static function sanitizeString($input) {
             return htmlspecialchars(strip_tags(trim($input)));
         }
-        
         
     }
 

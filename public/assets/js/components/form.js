@@ -28,7 +28,7 @@ export function crearForm(labels,input_types ,values, ruta, button) {
     form.appendChild(button);
 
 
-    form.addEventListener("submit", async (ev) => {
+    form.addEventListener("submit", (ev) => {
         ev.preventDefault(); 
 
         initForm(form, ruta); 

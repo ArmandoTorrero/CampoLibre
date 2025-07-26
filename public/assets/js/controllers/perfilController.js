@@ -16,26 +16,24 @@ export function clearContent(btn,callBack) {
 }
 
 
-export function userInfo() {
+export async function userInfo() {
     
     const user_info_container = document.querySelector(".user-info"); 
     const additional_info_container = document.querySelector(".additional-info"); 
     const dinamic_content = document.querySelector(".content"); 
     const reservasButton = document.querySelector("button.reservas"); 
+    
+    const { nombre, email } = (await getUserInfo()).user;    
+    
+    user_info_container.children[0].textContent = nombre; 
+    user_info_container.children[1].textContent = email; 
 
-    getUserInfo().then(info => {
-        user_info_container.children[0].textContent = info.user.nombre; 
-        user_info_container.children[1].textContent = info.user.email
-        
-    })
+    const { reservas } = await getAllReservasByUser();
 
-    getAllReservasByUser().then(result => {
-        additional_info_container.children[1].textContent = `${result.reservas.length} reservas completadas`; 
-        
-        dinamic_content.appendChild(reservasContainer(result.reservas.slice(-8))); 
-        clearContent(reservasButton,() => reservasContainer(result.reservas.slice(-8)))
-        
-    })
+    additional_info_container.children[1].textContent = `${reservas.length} reservas completadas`; 
+    
+    dinamic_content.appendChild(reservasContainer(reservas.slice(-8))); 
+    clearContent(reservasButton,() => reservasContainer(reservas.slice(-8)))
 
 }
 

@@ -21,6 +21,15 @@
         }
 
         /**
+         * Crear sesión para el email del usuario
+         * @param [type] $email
+         * @return void
+         */
+        public static function crearSesionEmail($email) {
+            $_SESSION['email'] = $email; 
+        }
+
+        /**
          * Crear sesion para el rol del usuario
          * @param mixed $id_rol
          * @return void

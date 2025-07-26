@@ -9,6 +9,7 @@ export function crearInput(name, type, input_value = "") {
     input.type = type;
     input.name = name; 
     input.value = input_value; 
+    input.required = true; 
 
     return input;
 }

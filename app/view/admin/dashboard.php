@@ -41,6 +41,42 @@
 
                <article class="table"></article>
 
+               <dialog class="dialog-campo">
+                    <h1>Detalles del campo</h1>
+
+                    <form action="#" method="post" class="form-edit-campo">
+
+                        <input type="hidden" name="id_campo" id="id_campo">
+
+                        <section class="label-input">
+                            <label for="nombre_campo">Nombre del campo</label>
+                            <input type="text" name="nombre_campo" id="nombre_campo" placeholder="Nombre campo">
+                            <span class="noVisible">Solo letras</span>
+                        </section>
+
+                        <section class="label-input">
+                            <label for="modalidad">Modalidad</label>
+                            <select name="modalidad" id="modalidad"></select>
+                        </section>
+
+                        <section class="label-input">
+                            <label for="disponibilidad">Disponiblidad</label>
+                            <select name="disponibilidad" id="disponibilidad">
+                                <option value="1">Disponible</option>
+                                <option value="0">No disponible</option>
+                            </select>
+                        </section>
+
+                        <section class="buttons">
+                            <button type="button" class="cancelar-btn">Cancelar</button>
+                            <button type="submit" disabled class="disabled enviar">Editar</button>
+                        </section>
+
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['editCampo_csrf_token'] ?>">
+
+                    </form>
+               </dialog>
+
             </section>
         </main>
     </body>

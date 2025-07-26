@@ -27,13 +27,14 @@
             }
         }
 
-        public function getHorarioByFechaHora($fecha, $hora)
+        public function getHorarioByFechaHora($fecha, $hora,$id_campo)
         {
             try {
-                $sql = "SELECT * FROM franja_horaria WHERE fecha = :fecha AND hora_inicio = :hora";
+                $sql = "SELECT * FROM franja_horaria WHERE fecha = :fecha AND hora_inicio = :hora AND pista_id = :id_campo";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindParam(':hora', $hora);
                 $stmt->bindParam(':fecha', $fecha);
+                $stmt->bindParam(':id_campo', $id_campo);
                 $stmt->execute();
                 return $stmt->fetch(PDO::FETCH_ASSOC);
                 

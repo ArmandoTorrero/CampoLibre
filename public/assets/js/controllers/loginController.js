@@ -19,7 +19,6 @@ export const mostrarPasswd = () => {
     
     const input_passwd = document.getElementById("passwd"); 
     
-
     input_mostrar.addEventListener("change", (ev) => {
          
         input_passwd.type = ev.target.checked ? 'text' : 'password'; 

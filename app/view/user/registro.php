@@ -64,10 +64,11 @@
 
 
         <a href="/CampoLibre/public/login" target="_self" class="registrate">¿Ya tienes una cuenta? <strong>Inicia sesión</strong></a>
-        <article class="buttons">
+
+        <!-- <article class="buttons">
             <a href="#" target="_self"><i class="fa-brands fa-google"></i> Google</a>
             <a href="#" target="_self"><i class="fa-brands fa-facebook"></i> Facebook</a>
-        </article>
+        </article> -->
     </section>
 
     <script type="module" src="./assets/js/views/registro.js"></script>

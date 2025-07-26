@@ -8,17 +8,14 @@ import { getCampoByFiltro } from "./../services/campo.js";
  * Funcion para rellenar un select con las modalidades
  * @param {*} select 
  */
-export function selectModalidad(select) {
+export async function selectModalidad(select) {
+
+    const { modalidades } = await getModalidades();
+
+    modalidades.map(modalidad => {
+        select.appendChild(crearOption(modalidad.nombre, modalidad.id));
+    }); 
     
-    getModalidades().then(response => {
-
-        const { modalidades } = response
-
-        modalidades.map(modalidad => {
-            select.appendChild(crearOption(modalidad.nombre, modalidad.id));
-        }); 
-        
-    })
 }
 
 /**
@@ -44,31 +41,28 @@ export function initFiltros() {
     const select = document.getElementById("categoria");
     const form = document.querySelector("form.filtros");
 
-    form.addEventListener("submit", (ev) => {
+    form.addEventListener("submit", async (ev) => {
+
         ev.preventDefault();
         
         camposContainer.innerHTML = ""; // Limpiar los campos antes de mostrar los resultados
 
-        getCampoByFiltro(buscador.value, select.value).then(data => {
-            
-            const { campos } = data;
-            
-            if (campos.length !== 0) {
+        const { campos } = await getCampoByFiltro(buscador.value, select.value);
 
-                campos.map(campo => {
-                    camposContainer.appendChild(
-                        cardCampoDestacado(campo)
-                    )
-                })
+        if (campos.length !== 0) {
 
-            }else{
-                let noResults = document.createElement("h2");
-                noResults.textContent = "No se encontraron campos";
-                camposContainer.appendChild(noResults);
-            }
+            campos.map(campo => {
+                camposContainer.appendChild(
+                    cardCampoDestacado(campo)
+                )
+            })
 
-            
-        })
+        }else{
+            let noResults = document.createElement("h2");
+            noResults.textContent = "No se encontraron campos";
+            camposContainer.appendChild(noResults);
+        }
+
         
     })
 
